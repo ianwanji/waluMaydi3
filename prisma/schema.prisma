@@ -1,0 +1,101 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model category {
+  category_id   Int      @id
+  category_name String?  @db.VarChar(15)
+  seller        seller[]
+}
+
+model customer {
+  cus_id      Int           @id
+  fname       String        @db.VarChar(15)
+  lname       String        @db.VarChar(14)
+  dob         DateTime      @db.Date
+  gender      String?       @db.Char(1)
+  user_acc    user_acc      @relation(fields: [cus_id], references: [user_id], onDelete: SetNull, map: "fk_user")
+  message     message[]
+  rate        rate[]
+  reservation reservation[]
+}
+
+model message {
+  seller_id    Int
+  cus_id       Int
+  date         DateTime @db.Date
+  text         String   @db.VarChar(50)
+  isfromsender Boolean
+  customer     customer @relation(fields: [cus_id], references: [cus_id], onDelete: Cascade, map: "fk_customer_message")
+  seller       seller   @relation(fields: [seller_id], references: [seller_id], onDelete: Cascade, map: "fk_seller_message")
+
+  @@id([seller_id, cus_id, date], map: "pk_message")
+}
+
+model offer {
+  offer_id          Int           @id
+  seller_id         Int?
+  offer_description String?       @db.VarChar(50)
+  price             Decimal       @db.Decimal(8, 2)
+  numberofboxes     Int?
+  seller            seller?       @relation(fields: [seller_id], references: [seller_id], onDelete: Cascade, map: "fk_seller")
+  reservation       reservation[]
+}
+
+model product {
+  product_id       String   @id @db.VarChar(10)
+  prod_description String   @db.VarChar(35)
+  product_name     Decimal? @db.Decimal(8, 2)
+  seller_id        Int?
+  seller           seller?  @relation(fields: [seller_id], references: [seller_id], map: "fk_seller_product")
+}
+
+model rate {
+  seller_id Int
+  cus_id    Int
+  remark    String?  @db.VarChar(50)
+  rate_date DateTime @db.Date
+  customer  customer @relation(fields: [cus_id], references: [cus_id], onDelete: Cascade, map: "fk_customer_rate")
+  seller    seller   @relation(fields: [seller_id], references: [seller_id], onDelete: Cascade, map: "fk_seller_rate")
+
+  @@id([seller_id, cus_id], map: "pk_rate")
+}
+
+model reservation {
+  cus_id        Int
+  offer_id      Int
+  pickinguptime DateTime @db.Time(6)
+  customer      customer @relation(fields: [cus_id], references: [cus_id], onDelete: Cascade, map: "fk_customer_reservation")
+  offer         offer    @relation(fields: [offer_id], references: [offer_id], onDelete: Cascade, map: "fk_offer_reservation")
+
+  @@id([cus_id, offer_id], map: "pk_reservation")
+}
+
+model seller {
+  seller_id          Int       @id
+  seller_name        String    @db.VarChar(15)
+  seller_description String?   @db.VarChar(100)
+  location           String?   @db.Char(50)
+  category_id        Int?
+  message            message[]
+  offer              offer[]
+  product            product[]
+  rate               rate[]
+  category           category? @relation(fields: [category_id], references: [category_id], map: "fk_category")
+  user_acc           user_acc  @relation(fields: [seller_id], references: [user_id], onDelete: SetNull, map: "fk_user")
+}
+
+model user_acc {
+  user_id      Int       @id
+  username     String    @db.VarChar(15)
+  phonenumber  String?   @db.VarChar(10)
+  emailaddress String    @default("0") @db.VarChar(50)
+  usertype     String    @db.Char(1)
+  customer     customer?
+  seller       seller?
+}
