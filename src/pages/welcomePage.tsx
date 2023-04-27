@@ -1,10 +1,17 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
+const welcomePage: NextPage = () => {
+  const handleCustomerClick = () => {
 
-const Home: NextPage = () => {
-  const handleWelcomeClick = () => {
+    window.open('/signInPage');
+  };
 
-    window.open('/welcomePage');
+  const handleSellerClick = () => {
+    window.open('/homePageSeller');
+  };
+  const handleModeChange = (isBusinessMode: boolean) => {
+    // Handle the mode change here
+    console.log('Switched to', isBusinessMode ? 'business' : 'customer', 'mode');
   };
 
 
@@ -20,14 +27,21 @@ const Home: NextPage = () => {
         <div className="flex flex-col items-center justify-center gap-4">
         <button
             className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded"
-            onClick={handleWelcomeClick}
+            onClick={handleCustomerClick}
           >
-            Get Started!
+Customer          </button>
+        <button
+            className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded"
+            onClick={handleSellerClick}
+          >
+           Seller
           </button>
+
+
         </div>
       </main>
     </>
   );
 };
 
-export default Home;
+export default welcomePage;

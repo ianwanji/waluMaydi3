@@ -7,11 +7,10 @@ export function NavBar() {
   return (
     <nav className="border-gray-200 bg-white dark:bg-gray-900">
       <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
-        <Link href="/" className="flex items-center">
+        <Link href="/homePageSeller" className="flex items-center">
 
           <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
             WaluMaydi3 
-            href
           </span>
         </Link>
         <button

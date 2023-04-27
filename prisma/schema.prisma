@@ -8,9 +8,9 @@ datasource db {
 }
 
 model category {
-  category_id   Int      @id
-  category_name String?  @db.VarChar(15)
-  seller        seller[]
+  category_id Int      @id
+  value       String?  @db.VarChar(50)
+  seller      seller[]
 }
 
 model customer {
@@ -19,6 +19,7 @@ model customer {
   lname       String        @db.VarChar(14)
   dob         DateTime      @db.Date
   gender      String?       @db.Char(1)
+  usertype    String        @default("C") @db.Char(1)
   user_acc    user_acc      @relation(fields: [cus_id], references: [user_id], onDelete: SetNull, map: "fk_user")
   message     message[]
   rate        rate[]
@@ -79,8 +80,9 @@ model reservation {
 model seller {
   seller_id          Int       @id
   seller_name        String    @db.VarChar(15)
-  seller_description String?   @db.VarChar(100)
-  location           String?   @db.Char(50)
+  seller_description String?   @db.VarChar(1)
+  location           String?   @db.Char(4)
+  usertype           String    @default("S") @db.Char(1)
   category_id        Int?
   message            message[]
   offer              offer[]

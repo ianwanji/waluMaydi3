@@ -14,7 +14,7 @@ function Card({ Offer }: { Offer: offer }) {
       <div className="p-5">
         <a href="/offersPage">
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            {Offer.seller_id} - ${Offer.price}
+            {Offer.seller_id} - DH {Offer.price}
           </h5>
         </a>
                
