@@ -1,142 +1,64 @@
-import React from 'react';
-import { useEffect } from "react";
-import { SignIn, useUser } from "@clerk/nextjs";
-import { useRouter } from "next/router";
-import { NextPage } from "next";
+// import { NextPage } from 'next';
+// import Head from 'next/head';
+// import { Reservation, Offer } from '../types';
 
-const Homepage: React.FC = () => {
+// interface Props {
+//   reservations: Reservation[];
+//   offers: Offer[];
+// }
 
-//   const router = useRouter();
-//   const user = useUser();
-
-//   useEffect(() => {
-//     if (user.isSignedIn) {
-//       router.push("/homePageSeller");
-//     }
-//   }, [user, router]);
+// const SellerHomePage: NextPage<Props> = ({ reservations, offers }) => {
 
 //   return (
 //     <>
-//       <SignIn />
+//       <Head>
+//         <title>Seller Home | Walu Maydi3</title>
+//         <meta name="description" content="Your seller home page on Walu Maydi3" />
+//         <link rel="icon" href="/favicon.ico" />
+//       </Head>
+
+//       <main className="flex flex-col items-center justify-center h-screen" style={{backgroundImage: "url('https://example.com/background-image.jpg')", backgroundSize: "cover"}}>
+//         <div className="max-w-4xl w-full px-4 sm:px-6 lg:px-8">
+//           <div className="flex flex-col items-center justify-center py-16 md:py-32">
+//             <h1 className="text-6xl font-bold text-white mb-8" style={{ fontFamily: "Open Sans", textShadow: "2px 2px 4px #000000" }}>
+//               My Seller Home
+//             </h1>
+
+//             <div className="flex flex-col items-center justify-center gap-8">
+//               <h2 className="text-3xl font-semibold text-white mb-4">My Reservations</h2>
+//               {reservations.length > 0 ? (
+//                 <ul className="w-full max-w-md bg-white shadow-md rounded-lg divide-y divide-gray-200">
+//                   {reservations.map(reservation => (
+//                     <li key={reservation.id} className="px-4 py-4 sm:px-6">
+//                       <div className="flex items-center justify-between">
+//                         <h3 className="text-lg font-medium text-gray-900">{reservation.title}</h3>
+//                         <p className="text-sm font-medium text-gray-500">{reservation.date}</p>
+//                       </div>
+//                       <p className="mt-1 max-w-2xl text-sm text-gray-500">{reservation.description}</p>
+//                     </li>
+//                   ))}
+//                 </ul>
+//               ) : (
+//                 <p className="text-white">You have no reservations yet.</p>
+//               )}
+
+//               <h2 className="text-3xl font-semibold text-white mt-8 mb-4">My Offers</h2>
+//               {offers.length > 0 ? (
+//                 <ul className="w-full max-w-md bg-white shadow-md rounded-lg divide-y divide-gray-200">
+//                   {offers.map(offer => (
+//                     <li key={offer.id} className="px-4 py-4 sm:px-6">
+//                     </li>
+//                   ))}
+//                 </ul>
+//               ) : (
+//                 <p className="text-white">You have no offers yet.</p>
+//               )}
+//             </div>
+//           </div>
+//         </div>
+//       </main>
 //     </>
-//   );
-// };
+//   )
+// }
 
-  return (
-    <div className="bg-gray-100">
-      {/* Header */}
-      <header className="bg-white">
-        <nav className="container mx-auto py-4 px-8">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <a href="/" className="text-xl font-bold text-gray-800">
-              My Business
-            </a>
-
-            {/* Navigation links */}
-            <ul className="flex space-x-4">
-              <li>
-                <a href="/" className="text-gray-600 hover:text-gray-800">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="/" className="text-gray-600 hover:text-gray-800">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="/" className="text-gray-600 hover:text-gray-800">
-                  Services
-                </a>
-              </li>
-              <li>
-                <a href="/" className="text-gray-600 hover:text-gray-800">
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </header>
-
-      {/* Hero section */}
-      <section className="bg-blue-500 py-16">
-        <div className="container mx-auto px-8 text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">
-            Welcome to My Business!
-          </h1>
-          <p className="text-lg text-white">
-            We offer innovative solutions for your business needs.
-          </p>
-          <button className="bg-white text-blue-500 font-semibold py-2 px-4 mt-8 rounded-full">
-            Learn More
-          </button>
-        </div>
-      </section>
-
-      {/* Features section */}
-      <section className="bg-gray-200 py-16">
-        <div className="container mx-auto px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-lg p-8 shadow">
-              <h2 className="text-2xl font-semibold mb-4">Feature 1</h2>
-              <p className="text-gray-700">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Curabitur hendrerit mollis justo sed egestas. Proin eu mi
-                mattis, consequat ex eu, rutrum odio.
-              </p>
-            </div>
-            <div className="bg-white rounded-lg p-8 shadow">
-              <h2 className="text-2xl font-semibold mb-4">Feature 2</h2>
-              <p className="text-gray-700">
-                Nulla facilisi. Aliquam mattis felis id ligula laoreet, id
-                sagittis lectus ultricies. Fusce fermentum erat neque, sed
-                tempus dui euismod in.
-              </p>
-            </div>
-            <div className="bg-white rounded-lg p-8 shadow">
-              <h2 className="text-2xl font-semibold mb-4">Feature 3</h2>
-              <p className="text-gray-700">
-                Phasellus sodales eros a est pharetra sollicitudin.
-                Pellentesque habitant morbi tristique senectus et netus et
-                malesuada fames ac turpis egestas.
-              </p>
-            </div>
-          </div>
-          <div className="bg-white rounded-lg p-8 shadow">
-          <h2 className="text-2xl font-semibold mb-4">Feature 4</h2>
-          <p className="text-gray-700">
-            Sed quis lectus sit amet diam tincidunt accumsan eget ac orci.
-            Integer vitae consequat arcu, at fringilla magna.
-          </p>
-        </div>
-      </div>
-  </section>
-
-  {/* Call to Action */}
-  <section className="bg-blue-600 py-16">
-    <div className="container mx-auto px-8 text-center">
-      <h2 className="text-4xl font-bold text-white mb-4">
-        Ready to get started?
-      </h2>
-      <p className="text-lg text-white mb-6">
-        Contact us today for a free consultation.
-      </p>
-      <button className="bg-white text-blue-600 font-semibold py-2 px-4 rounded-full">
-        Contact Us
-      </button>
-    </div>
-  </section>
-
-  {/* Footer */}
-  <footer className="bg-gray-800 py-8">
-    <div className="container mx-auto px-8 text-white text-center">
-      <p>&copy; 2023 My Business. All rights reserved.</p>
-    </div>
-  </footer>
-</div>
-);
-};
-
-export default Homepage;
+// export default SellerHomePage;

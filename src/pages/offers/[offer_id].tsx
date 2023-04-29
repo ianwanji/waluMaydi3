@@ -16,10 +16,6 @@ const OfferView: NextPage = () => {
     }
   );
 
-  if (offer.isLoading) {
-    // Render loading state
-    return <div>Loading...</div>;
-  }
 
   if (offer.error) {
     // Render error state
@@ -43,8 +39,16 @@ const OfferView: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col gap-12 bg-gray-800">
-        {/* <h1 className="mt-12 text-4xl">{offerItem.offer_id}</h1> */}
-      </main>
+        <h1 className="mt-12 text-4xl">{offerItem.offer_id}</h1>
+        <p>{offerItem.seller_id}</p>
+        <p>{offerItem.offer_description}</p>
+        <p>DH{offerItem.price}</p>
+        <p>{offerItem.numberofboxes}</p>
+
+
+
+        
+    </main>
     </>
   );
 };

@@ -1,12 +1,10 @@
 import { z } from "zod";
-import { Router } from "express";
 
 import {
   createTRPCRouter,
   publicProcedure,
   protectedProcedure,
 } from "~/server/api/trpc";
-import { useQueries } from "react-query";
 
 
 export const newSignUp = createTRPCRouter({
