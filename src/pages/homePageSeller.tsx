@@ -32,7 +32,7 @@
 //                     <li key={reservation.id} className="px-4 py-4 sm:px-6">
 //                       <div className="flex items-center justify-between">
 //                         <h3 className="text-lg font-medium text-gray-900">{reservation.title}</h3>
-//                         <p className="text-sm font-medium text-gray-500">{reservation.date}</p>
+//                         <p className="text-s:m font-medium text-gray-500">{reservation.date}</p>
 //                       </div>
 //                       <p className="mt-1 max-w-2xl text-sm text-gray-500">{reservation.description}</p>
 //                     </li>
