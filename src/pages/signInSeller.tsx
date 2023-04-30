@@ -9,7 +9,7 @@ const SignInPage: NextPage = () => {
 
   useEffect(() => {
     if (user.isSignedIn) {
-      router.replace("/homePageSeller");
+      router.replace("/");
     }
   }, [user, router]);
 

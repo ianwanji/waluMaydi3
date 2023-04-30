@@ -62,7 +62,7 @@ export function NavBar() {
               </li>
               <li>
                 <Link
-                  href="/services"
+                  href="/service"
                  
                   aria-current="page"
                 >
@@ -78,17 +78,27 @@ export function NavBar() {
                   Home
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/contact"
-               
+              <Link
+                  href="/createanOffer"
                  
                   aria-current="page"
                 >
-                  Contact
+                  Create an offer
                 </Link>
-              </li>
-              
+                <Link
+                  href="/offersPage"
+                 
+                  aria-current="page"
+                >
+                  Offers
+                </Link>
+                <Link
+                  href="/sellers"
+                 
+                  aria-current="page"
+                >
+                  Sellers
+                </Link>
               
               <li>
                 <UserButton />

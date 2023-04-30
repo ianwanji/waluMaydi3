@@ -34,11 +34,14 @@ const createanOffer: NextPage = () => {
 
   return (
     <>
-      <Head>
+            <Head>
         <title>Create an Offer</title>
         <meta name="description" content="Walu Maydi3" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/iconnav.ico" />
+        <link rel="stylesheet" href="/styles.css" />
+        <meta name="keywords" content="offer, sell, description" />
       </Head>
+
       <main className="flex min-h-screen items-center justify-center bg-cover bg-center bg-gray-200">
       <div className="w-full max-w-sm bg-blue-50 rounded-lg shadow-lg p-6 font-serif">
           <h1 className="text-4xl text-green-500 font-bold text-center mb-8">

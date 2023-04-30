@@ -7,63 +7,6 @@ import { api } from "~/utils/api";
 import { useState, useEffect } from 'react';
 import { FaCheckCircle, FaTimes,FaArrowCircleRight } from 'react-icons/fa';
 
-type NotificationProps = {
-  message: string;
-  duration: number;
-  color: string;
-};
-
-function Notification({ message, duration, color }: NotificationProps) {
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setVisible(false);
-    }, duration - 10000);
-  
-    return () => clearTimeout(timeout);
-  }, [duration, setVisible]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const newOpacity = parseFloat((visible ? 1 : 0).toFixed(1)) - 0.1;
-      if (newOpacity >= 0 && newOpacity <= 1) {
-        setVisible(newOpacity > 0);
-      } else {
-        clearInterval(interval);
-      }
-    }, 500);
-  
-    return () => clearInterval(interval);
-  }, [visible]);
-
-  return (
-    <div
-      className={`fixed bottom-4 right-4 p-2 rounded-lg text-white ${
-        visible ? `bg-${color}-500` : `bg-${color}-300 opacity-0 pointer-events-none`
-      }`}
-      style={{
-        backgroundColor: color,
-        transition: 'all 0.9s ease',
-        transform: visible ? 'scale(1)' : 'scale(0.8)',
-        opacity: visible ? 1 : 0,
-      }}
-    >
-      <div className="flex justify-between items-center">
-        <span className="flex items-center">
-          <FaCheckCircle className={`mr-2 ${visible ? 'animate-bounce' : ''}`} />
-          {message}
-        </span>
-        <button
-          className="text-white hover:text-gray-200 ml-2 focus:outline-none"
-          onClick={() => setVisible(false)}
-        >
-          <FaTimes />
-        </button>
-      </div>
-    </div>
-  );
-}
 
 
 type CardProps = {
@@ -71,12 +14,7 @@ type CardProps = {
 };
 
 function Card({ Offer }: CardProps) {
-  const [showNotification, setShowNotification] = useState(false);
   const isFinished = Offer.numberofboxes === 0;
-
-  const handleAddToCart = () => {
-    setShowNotification(true);
-  };
 
   return (
      <div className="max-w-sm rounded-lg border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-700 transition-all duration-300 hover:border-green-500 hover:shadow-xl">
@@ -102,23 +40,19 @@ function Card({ Offer }: CardProps) {
           <p className="mb-3 text-gray-500 text-sm font-medium">{Offer.numberofboxes} boxes available</p>
         )}
                        {!isFinished && (
-          <button
-            onClick={handleAddToCart}
-            className="inline-flex items-center rounded-lg bg-green-500 px-4 py-2 text-center text-sm font-medium text-white hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-          >
-            Reserve
+          <Link
+          href={`/offers/${Offer.offer_id}`}
+          className="inline-flex items-center rounded-lg bg-green-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+        >
+
+            View
             <span className="ml-2">
               <FaArrowCircleRight className="animate-bounce" />
             </span>
-          </button>
-        )}
-
-        {showNotification && (
-          <Notification message="Offer reserved successfully" duration={2000} color="green" />
-        )}
+            </Link>)}
       </div>
     </div>
-  );
+  )
 }
   
   const OffersPage: NextPage = () => {
