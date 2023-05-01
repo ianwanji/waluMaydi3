@@ -7,7 +7,7 @@ import {
 } from "~/server/api/trpc";
 
 
-export const newSignUp = createTRPCRouter({
+export const newUser = createTRPCRouter({
   listUsers: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.user_acc.findMany();
   }),
@@ -22,29 +22,53 @@ export const newSignUp = createTRPCRouter({
       });
     }),
 
+    getUserByEmail: publicProcedure
+    .input(z.object({ email: z.string() }))
+    .query(({ ctx, input }) => {
+      return ctx.prisma.user_acc.findFirst({
+        where: {
+          emailaddress: input.email,
+        },
+      });
+    }),
+    getUserByUsername: publicProcedure
+    .input(z.object({ userName: z.string() }))
+    .query(({ ctx, input }) => {
+      return ctx.prisma.user_acc.findFirst({
+        where: {
+          username: input.userName,
+        },
+      });
+    }),
+
+    getUserByPhoneNumber: publicProcedure
+    .input(z.object({ phone: z.string() }))
+    .query(({ ctx, input }) => {
+      return ctx.prisma.user_acc.findFirst({
+        where: {
+          phonenumber: input.phone,
+        },
+      });
+    }),
+
+
+
+
   createUser: publicProcedure
     .input(
       z.object({
         user_id:z.number(),
         username: z.string(),
-        phoneNumber: z.string(),
-        emailAddress: z.string(),
-        usertype: z.string().refine((value) => value === 'C' || value === 'S', {
-          message: 'Invalid user type',
-        }),
-        sellerDescription: z.string(),
-        location: z.string(),
-        categoryID: z.number().optional(),
-      })
-    )
-    .mutation(async ({ input, ctx }) => {
-        const users=await ctx.prisma.user_acc.create({
-            data:{
-                ...input,
-            },
-        });
+        phonenumber: z.string(),
+        emailaddress: z.string(),
+        usertype: z.string()
+        }))
+        .mutation(async({ input,ctx }) => {
+          const users=await ctx.prisma.user_acc.create({
+               data:{
+                   ...input,
+               },
+           });
       return users;
     }),
 });
-
-

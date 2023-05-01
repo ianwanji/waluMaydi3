@@ -22,14 +22,14 @@ export const newSeller = createTRPCRouter({
           });
         }),
     
-    createSellers: publicProcedure
+    createSeller: publicProcedure
     .input(
         z.object({
-         seller_id: z.number(),
+          seller_id: z.number(),
           seller_name: z.string(),
           seller_description:z.string(),
           location: z.string(),
-          categoryid: z.number(),      
+          category_id: z.number(),      
         }))
       .mutation(async({ input,ctx }) => {
        const sellers=await ctx.prisma.seller.create({
@@ -40,6 +40,4 @@ export const newSeller = createTRPCRouter({
       return sellers;
     }),
 });
-
-
 
