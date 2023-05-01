@@ -63,7 +63,7 @@ const OfferView: NextPage = () => {
               <div className="mt-8">
                 <p className="text-sm text-gray-800">
                   <FaMoneyBillAlt className="mr-2 inline-block text-lg text-green-500" />
-                  Price: DH{offerItem.price}
+                  Price: DH{offerItem.price.toString()}
                 </p>
                 <p
                   className="mt-4 text-center text-gray-600"

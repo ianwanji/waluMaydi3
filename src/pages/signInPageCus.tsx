@@ -15,8 +15,7 @@ const SignInPage: NextPage = () => {
 
   return (
     <>
-      <SignIn />
-      
+    router.push("/signUpCus"),      
     </>
   );
 };

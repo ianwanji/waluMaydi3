@@ -1,75 +1,40 @@
-import { TextField, Button, Container, Typography } from "@material-ui/core";
-import React, { useState, ChangeEvent } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { makeStyles } from '@material-ui/core/styles';
 import { api } from '~/utils/api';
 import { NextPage } from "next";
 import Head from "next/head";
 import { useForm } from "react-hook-form";
 import { FaBoxes, FaMoneyBillWave, FaPlusCircle } from 'react-icons/fa';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginTop: theme.spacing(8),
-    marginBottom: theme.spacing(8),
-  },
-  form: {
-    width: '100%',
-    marginTop: theme.spacing(3),
-  },
-  formControl: {
-    width: '100%',
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-    backgroundColor: '#4CAF50',
-    '&:hover': {
-      backgroundColor: '#388E3C',
-    },
-  },
-}));
-
 interface CreateSellerForm {
-  seller_id: string;
-  seller_name: string;
-  seller_description: string;
-  location: string;
-  category_id: string;
+user_id: string;
+seller_name: string;
+seller_description: string;
+location: string;
+category_id: string;
 }
 
 interface Props {
-  user_id: string;
-}
-
-interface CreateSellerForm {
-  user_id: string;
-  seller_name: string;
-  seller_description: string;
-  location: string;
-  category_id: string;
+user_id: string;
 }
 
 const SignUpSeller: NextPage = () => {
-  const router = useRouter();
-  const { user_id } = router.query as unknown as Props;
-  const createSeller = api.sellers.createSeller.useMutation();
+const router = useRouter();
+const { user_id } = router.query as unknown as Props;
+const createSeller = api.sellers.createSeller.useMutation();
 
-  const { register, handleSubmit } = useForm<CreateSellerForm>();
-  const onSubmit = (formData: CreateSellerForm) => {
-    createSeller.mutateAsync({
-      seller_id: parseInt(user_id),
-      seller_name: formData.seller_name,
-      seller_description: formData.seller_description,
-      location: formData.location,
-      category_id: parseInt(formData.category_id),
-    }).then(() => {
-      router.push("/");
-    });
-  };
-  
+const { register, handleSubmit } = useForm<CreateSellerForm>();
+const onSubmit = (formData: CreateSellerForm) => {
+createSeller.mutateAsync({
+seller_id: parseInt(user_id),
+seller_name: formData.seller_name,
+seller_description: formData.seller_description,
+location: formData.location,
+category_id: parseInt(formData.category_id),
+}).then(() => {
+router.push("/");
+});
+};
   return (
     <>
         <Head>
@@ -170,6 +135,3 @@ const SignUpSeller: NextPage = () => {
 
 export default SignUpSeller;
 
-/* function register(arg0: string, arg1: { required: boolean; }): JSX.IntrinsicAttributes & React.ClassAttributes<HTMLInputElement> & React.InputHTMLAttributes<HTMLInputElement> {
-  throw new Error("Function not implemented.");
-} */

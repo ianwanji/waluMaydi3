@@ -1,6 +1,5 @@
 import React, { useState, ChangeEvent } from 'react';
 import { useRouter } from 'next/router';
-import { makeStyles } from '@material-ui/core/styles';
 import { api } from '~/utils/api';
 import { NextPage } from "next";
 import Head from "next/head";
@@ -8,44 +7,17 @@ import { useForm } from "react-hook-form";
 import { FaBoxes, FaMoneyBillWave, FaPlusCircle } from 'react-icons/fa';
 
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginTop: theme.spacing(8),
-    marginBottom: theme.spacing(8),
-  },
-  form: {
-    width: '100%',
-    marginTop: theme.spacing(3),
-  },
-  formControl: {
-    width: '100%',
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-    backgroundColor: '#4CAF50',
-    '&:hover': {
-      backgroundColor: '#388E3C',
-    },
-  },
-}));
-
-
-  const SignUpUser: NextPage = () => {
-    type createUserForm = {
+const SignUpUser: NextPage = () => {
+  type createUserForm = {
     user_id: string;
     username: string;
     phonenumber: string;
     emailaddress: string;
     usertype: string;
-    };
+  };
 
- const createUser = api.users.createUser.useMutation();
- const router = useRouter();
-
-  const classes = useStyles();
+  const createUser = api.users.createUser.useMutation();
+  const router = useRouter();
 
   const { register, handleSubmit } = useForm<createUserForm>();
   const onSubmit = (formData: createUserForm) => {
@@ -56,17 +28,17 @@ const useStyles = makeStyles((theme) => ({
       router.push('/signUpCus');
     }
     createUser
-  .mutateAsync({
-    user_id: parseInt(formData.user_id),
-    username: formData.username,
-    phonenumber: formData.phonenumber,
-    emailaddress: formData.emailaddress,
-    usertype: formData.usertype,
-  })
-  .then(() => {
-    router.push("/");
-  });
-
+      .mutateAsync({
+        user_id: parseInt(formData.user_id),
+        username: formData.username,
+        phonenumber: formData.phonenumber,
+        emailaddress: formData.emailaddress,
+        usertype: formData.usertype,
+      })
+      .then(() => {
+        router.push("/");
+      });
+  
   };
   
   return (

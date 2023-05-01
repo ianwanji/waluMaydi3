@@ -1,69 +1,41 @@
-import { TextField, Button, Container, Typography } from "@material-ui/core";
-import React, { useState, ChangeEvent } from 'react';
 import { useRouter } from 'next/router';
-import { makeStyles } from '@material-ui/core/styles';
 import { api } from '~/utils/api';
 import { NextPage } from "next";
 import Head from "next/head";
 import { useForm } from "react-hook-form";
 import { FaBoxes, FaMoneyBillWave, FaPlusCircle } from 'react-icons/fa';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginTop: theme.spacing(8),
-    marginBottom: theme.spacing(8),
-  },
-  form: {
-    width: '100%',
-    marginTop: theme.spacing(3),
-  },
-  formControl: {
-    width: '100%',
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-    backgroundColor: '#4CAF50',
-    '&:hover': {
-      backgroundColor: '#388E3C',
-    },
-  },
-}));
-
-
-
 interface Props {
-  user_id: string;
-}
-
-interface CreateCusForm {
-  cus_id: string;
-            fname: string;
-            lname:string;
-            dob: string;
-            gender: string; 
-}
-
-const SignUpCus: NextPage = () => {
-  const router = useRouter();
-  const { user_id } = router.query as unknown as Props;
-  const createCus = api.customers.createCus.useMutation();
-
-  const { register, handleSubmit } = useForm<CreateCusForm>();
-  const onSubmit = (formData: CreateCusForm) => {
-    createCus.mutateAsync({
-      cus_id: parseInt(user_id),
-      fname: formData.fname,
-      lname: formData.lname,
-      dob: new Date(formData.dob),
-      gender: formData.gender,
-    }).then(() => {
-      router.push("/");
-    });
-  };
+    user_id: string;
+  }
   
+  interface CreateCusForm {
+    cus_id: string;
+    fname: string;
+    lname: string;
+    dob: string;
+    gender: string;
+  }
+  
+  const SignUpCus: NextPage = () => {
+    const router = useRouter();
+    const { user_id } = router.query as unknown as Props;
+    const createCus = api.customers.createCus.useMutation();
+  
+    const { register, handleSubmit } = useForm<CreateCusForm>();
+    const onSubmit = (formData: CreateCusForm) => {
+      createCus
+        .mutateAsync({
+          cus_id: parseInt(user_id),
+          fname: formData.fname,
+          lname: formData.lname,
+          dob: new Date(formData.dob),
+          gender: formData.gender,
+        })
+        .then(() => {
+          router.push('/');
+        });
+    };  
   return (
     <>
         <Head>
