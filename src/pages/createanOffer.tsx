@@ -119,7 +119,7 @@ const createanOffer: NextPage = () => {
                 <div className="mt-1">
                   <textarea
                     id="offer_description"
-                    rows="3"
+                    rows={3}
                     className="block w-full px-4 py-2 focus:border-green-500 focus:border-indigo-500 focus:outline-none focus:ring-green-500 focus:ring-indigo-500 sm:text-sm"
                     placeholder="Enter Offer Description"
                     {...register("offer_description", { required: true })}
