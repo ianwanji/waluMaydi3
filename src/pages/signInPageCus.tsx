@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { SignIn, useUser } from "@clerk/nextjs";
+import {  useUser } from "@clerk/nextjs";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 
