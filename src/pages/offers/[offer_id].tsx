@@ -2,7 +2,12 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import { api } from "~/utils/api";
 import { NextPage } from "next";
-import { FaMoneyBillAlt } from "react-icons/fa";
+import {
+  FaMoneyBillAlt,
+  FaFacebook,
+  FaTwitter,
+  FaLinkedin,
+} from "react-icons/fa";
 import { IoMdInformationCircle } from "react-icons/io";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import Image from "next/image";
@@ -32,51 +37,84 @@ const OfferView: NextPage = () => {
 
   return (
     <>
-      <div className="bg-gray-100 py-8"></div>
-      <main className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-          <div>
-            <Image
-              className="rounded-lg shadow-md"
-              src="/icons/cooking.png"
-              alt="Restaurant"
-              width={500}
-              height={100}
-            />
-          </div>
-          <div className="flex flex-col justify-center">
-            <h2
-              className="mb-4 text-2xl font-bold"
-              style={{ fontFamily: "Times New Roman" }}
+      <div className="bg-gray-100 min-h-screen bg-pattern" style={{ backgroundImage: `url(${pattern})` }}>
+        <div className="container mx-auto px-4 py-8 flex flex-col items-center">
+          <img
+            className="w-32 h-32 rounded-full border-4 border-white mb-4"
+            src={avatar}
+            alt="Profile Picture"
+          />
+          <h1 className="text-4xl font-bold mb-2">{user.username}</h1>
+          <p className="text-lg text-gray-600 mb-4">{user.emailaddress}</p>
+          <div className="flex space-x-4">
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:text-blue-600 transition duration-300"
             >
-              Product details
-            </h2>
-            <p className="mb-4 text-gray-600" style={{ fontFamily: "serif" }}>
-              <IoMdInformationCircle className="mr-2 inline-block text-lg" />
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-              vel nibh sit amet tellus vulputate posuere. Suspendisse potenti.
-              Donec quis ipsum sed elit gravida suscipit. Ut facilisis malesuada
-              blandit. Nam posuere augue vel sem dignissim lobortis. Aliquam nec
-              nibh dolor.
-            </p>
-            <div className="mb-4 flex items-center">
-              <div className="mt-8">
-                <p className="text-sm text-gray-800">
-                  <FaMoneyBillAlt className="mr-2 inline-block text-lg text-green-500" />
-                  Price: DH{offerItem.price.toString()}
-                </p>
-                <p
-                  className="mt-4 text-center text-gray-600"
-                  style={{ fontFamily: "Times New Roman" }}
-                >
-                  {offerItem.numberofboxes} boxes available
-                </p>
-              </div>
+              <FaFacebook size={24} />
+            </a>
+            <a
+              href="https://www.twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:text-blue-600 transition duration-300"
+            >
+              <FaTwitter size={24} />
+            </a>
+          </div>
+        </div>
+      </div>
+      <main className="container mx-auto px-4 py-16">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          <div className="bg-white p-8 rounded-lg shadow">
+            <h2 className="text-3xl font-bold mb-4">Profile Information</h2>
+            <div className="mb-4 space-y-2">
+              <p className="text-lg text-gray-800 font-bold">
+                {seller && "Seller Information"}
+                {customer && "Customer Information"}
+              </p>
+              <p className="text-sm text-gray-800">
+                UserID: {user.user_id}
+              </p>
+              {seller && (
+                <>
+                  <p className="text-sm text-gray-800">
+                    UserType: Seller
+                  </p>
+                  <p className="text-gray-600">
+                    Seller Description: {seller.seller_description}
+                  </p>
+                  <p className="text-gray-600">
+                    Location: {seller.location}
+                  </p>
+                </>
+              )}
+              {customer && (
+                <>
+                  <p className="text-sm text-gray-800">
+                    UserType: Customer
+                  </p>
+                  <p className="text-gray-600">
+                    Last Name: {customer.lname}
+                  </p> 
+                  <p className="text-gray-600">
+                    First Name: {customer.fname}
+                  </p>
+                  <p className="text-gray-600">
+                    Date of Birth: {customer.dob.toLocaleDateString()}
+                  </p>
+                  <p className="text-gray-600">
+                    Phone Number: {user.phonenumber}
+                  </p>
+                </>
+              )}
             </div>
-            <button className="w-auto rounded-full bg-green-500 px-0 py-2 font-bold text-white transition duration-300 hover:bg-green-600 hover:text-gray-100">
-              <AiOutlineShoppingCart className="mr-2 inline-block text-lg" />
-              Reserve now
-            </button>
+          </div>
+          <div className="bg-white p-8 rounded-lg shadow">
+            <h2 className="text-3xl font-bold mb-4">Activity Log</h2>
+            <p className="text-gray-600">No recent activity to display.</p>
           </div>
         </div>
       </main>
@@ -84,4 +122,4 @@ const OfferView: NextPage = () => {
   );
 };
 
-export default OfferView;
+export default Profileview;

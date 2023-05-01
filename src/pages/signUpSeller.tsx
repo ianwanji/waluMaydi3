@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { useRouter } from 'next/router';
 import { api } from '~/utils/api';
 import { NextPage } from "next";
@@ -6,35 +6,45 @@ import Head from "next/head";
 import { useForm } from "react-hook-form";
 import { FaBoxes, FaMoneyBillWave, FaPlusCircle } from 'react-icons/fa';
 
+
 interface CreateSellerForm {
-user_id: string;
-seller_name: string;
-seller_description: string;
-location: string;
-category_id: string;
+  seller_id: string;
+  seller_name: string;
+  seller_description: string;
+  location: string;
+  category_id: string;
 }
 
 interface Props {
-user_id: string;
+  user_id: string;
+}
+
+interface CreateSellerForm {
+  user_id: string;
+  seller_name: string;
+  seller_description: string;
+  location: string;
+  category_id: string;
 }
 
 const SignUpSeller: NextPage = () => {
-const router = useRouter();
-const { user_id } = router.query as unknown as Props;
-const createSeller = api.sellers.createSeller.useMutation();
+  const router = useRouter();
+  const { user_id } = router.query as unknown as Props;
+  const createSeller = api.sellers.createSeller.useMutation();
 
-const { register, handleSubmit } = useForm<CreateSellerForm>();
-const onSubmit = (formData: CreateSellerForm) => {
-createSeller.mutateAsync({
-seller_id: parseInt(user_id),
-seller_name: formData.seller_name,
-seller_description: formData.seller_description,
-location: formData.location,
-category_id: parseInt(formData.category_id),
-}).then(() => {
-router.push("/");
-});
-};
+  const { register, handleSubmit } = useForm<CreateSellerForm>();
+  const onSubmit = (formData: CreateSellerForm) => {
+    createSeller.mutateAsync({
+      seller_id: parseInt(user_id),
+      seller_name: formData.seller_name,
+      seller_description: formData.seller_description,
+      location: formData.location,
+      category_id: parseInt(formData.category_id),
+    }).then(() => {
+      router.push("/");
+    });
+  };
+  
   return (
     <>
         <Head>
@@ -135,3 +145,6 @@ router.push("/");
 
 export default SignUpSeller;
 
+/* function register(arg0: string, arg1: { required: boolean; }): JSX.IntrinsicAttributes & React.ClassAttributes<HTMLInputElement> & React.InputHTMLAttributes<HTMLInputElement> {
+  throw new Error("Function not implemented.");
+} */

@@ -27,7 +27,6 @@ const createanOffer: NextPage = () => {
       price: parseFloat(formData.price),
       numberofboxes: parseInt(formData.numberofboxes),
       seller_id: parseInt(formData.seller_id),
-      offer_id: parseInt(formData.offer_id),
     });
     setShowNotification(true);
 
@@ -82,20 +81,9 @@ const createanOffer: NextPage = () => {
               onSubmit={handleSubmit(onSubmit)}
             >
               <div className="mb-2 flex items-center">
-                <label
-                  htmlFor="offer_id"
-                  className="mr-4 block text-lg font-medium text-gray-700"
-                >
-                  Offer ID
-                </label>
+               
                 <div className="relative mt-1 rounded-md shadow-sm">
-                  <input
-                    type="number"
-                    id="offer_id"
-                    className="block w-full px-4 py-2 focus:border-green-500 focus:border-indigo-500 focus:outline-none focus:ring-green-500 focus:ring-indigo-500 sm:text-sm"
-                    placeholder="Enter Offer ID"
-                    {...register("offer_id", { required: true })}
-                  />
+                 
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                     <FaPlusCircle
                       className="h-6 w-6 animate-pulse text-green-500"

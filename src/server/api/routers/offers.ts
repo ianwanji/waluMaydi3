@@ -21,33 +21,39 @@ export const newOffer = createTRPCRouter({
             },
           });
         }),
-    
-    createOffers: publicProcedure
-    .input(z.object({ offer_id: z.number(),seller_id: z.number(), offer_description: z.string(),price:z.number(), numberofboxes:z.number()     }))
-    .mutation(async({ input,ctx }) => {
-       const offers=await ctx.prisma.offer.create({
-            data:{
-                ...input,
+        createOffers: publicProcedure
+        .input(
+          z.object({
+            seller_id: z.number(),
+            offer_description: z.string(),
+            price: z.number(),
+            numberofboxes: z.number(),
+          })
+        )
+        .mutation(async ({ input, ctx }) => {
+          const lastOffer = await ctx.prisma.offer.findFirst({
+            orderBy: {
+              offer_id: "desc",
             },
-        });
-        // sendMessage: protectedProcedure
-        // .input(z.object({ message: z.string(), listingId: z.string() }))
-        // .mutation(async ({ input, ctx }) => {
-        //   const fromUser = await clerkClient.users.getUser(ctx.auth.userId);
+          });
     
-        //   const message = await ctx.prisma.message.create({
-        //     data: {
-        //       fromUser: ctx.auth.userId,
-        //       fromUserName: fromUser.username ?? "unknown",
-        //       listingId: input.listingId,
-        //       message: input.message,
-        //     },
-        //   });
-        //   return message;
-        // }),
+          const newOfferId = (lastOffer?.offer_id ?? 0) + 1;
+    
+          const offers= await ctx.prisma.offer.create({
+            data: {
+              ...input,
+              offer_id: newOfferId,
+            },
+          });
+    
+
+          
+      
+  
        
       
       
       return offers;
     }),
-});
+
+})

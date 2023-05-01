@@ -13,13 +13,33 @@ export const newUser = createTRPCRouter({
   }),
 
   getUser: publicProcedure
-    .input(z.object({ userid: z.string() }))
-    .query(({ ctx, input }) => {
-      return ctx.prisma.user_acc.findUnique({
+  .input(z.object({ userid: z.string() }))
+  .query(async ({ ctx, input }) => {
+    const user = await ctx.prisma.user_acc.findUnique({
+      where: {
+        user_id: parseInt(input.userid),
+      },
+    });
+
+    if (user?.usertype === 'S') {
+      // Fetch additional information from the seller table
+      const seller = await ctx.prisma.seller.findUnique({
         where: {
-          user_id: parseInt(input.userid),
+          seller_id: user.user_id,
         },
       });
+
+      return { user, seller };
+    } else if (user?.usertype === 'C') {
+      // Fetch additional information from the customer table
+      const customer = await ctx.prisma.customer.findUnique({
+        where: {
+          cus_id: user.user_id,
+        },
+      });
+
+      return { user, customer };
+    }
     }),
 
     getUserByEmail: publicProcedure
@@ -50,15 +70,23 @@ export const newUser = createTRPCRouter({
         },
       });
     }),
-
-
-
-
+    
+    getUserByEmailAndPassword: publicProcedure
+    .input(z.object({ emailaddress: z.string(),  }))
+    .query(({ ctx, input }) => {
+      return ctx.prisma.user_acc.findFirst({
+        where: {
+          emailaddress: input.emailaddress,
+        },
+      });
+    }),
+    
   createUser: publicProcedure
     .input(
       z.object({
         user_id:z.number(),
         username: z.string(),
+        password: z.string(),
         phonenumber: z.string(),
         emailaddress: z.string(),
         usertype: z.string()
