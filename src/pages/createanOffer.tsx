@@ -81,16 +81,8 @@ const createanOffer: NextPage = () => {
               onSubmit={handleSubmit(onSubmit)}
             >
               <div className="mb-2 flex items-center">
-               
-                <div className="relative mt-1 rounded-md shadow-sm">
-                 
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                    <FaPlusCircle
-                      className="h-6 w-6 animate-pulse text-green-500"
-                      aria-hidden="true"
-                    />
-                  </div>
-                </div>
+                
+                
               </div>
 
               <div className="mb-2 flex items-center">
