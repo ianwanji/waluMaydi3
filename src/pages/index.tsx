@@ -1,5 +1,5 @@
 import React from "react";
-import { SignInButton, UserButton, useUser } from "@clerk/nextjs";
+import {  useUser } from "@clerk/nextjs";
 import { useRouter } from "next/router";
 
 const Homepage: React.FC = () => {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { BsGeoAlt } from "react-icons/bs";
-import { FiBriefcase, FiUser, FiPhone, FiMail } from "react-icons/fi";
+import { FiBriefcase } from "react-icons/fi";
 import { RiCheckboxCircleFill } from "react-icons/ri";
 
 const SignUp: React.FC = () => {

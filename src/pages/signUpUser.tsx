@@ -4,7 +4,7 @@ import { api } from '~/utils/api';
 import { NextPage } from "next";
 import Head from "next/head";
 import { useForm } from "react-hook-form";
-import { FaBoxes, FaMoneyBillWave, FaPlusCircle } from 'react-icons/fa';
+import { FaBoxes, FaPlusCircle } from 'react-icons/fa';
 import zxcvbnModule from 'zxcvbn';
 
 

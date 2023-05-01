@@ -5,8 +5,7 @@ import Link from "next/link";
 import { api } from "~/utils/api";
 import { offer } from "@prisma/client";
 
-import { useState, useEffect } from 'react';
-import { FaCheckCircle, FaTimes,FaArrowCircleRight } from 'react-icons/fa';
+import { FaArrowCircleRight } from 'react-icons/fa';
 
 type CardProps = {
   Offer: offer;

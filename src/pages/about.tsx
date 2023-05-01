@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { FaEnvelope, FaPhone } from "react-icons/fa";
 
 const NavBar = ({ user }: { user: boolean }) => {
   return (
