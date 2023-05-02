@@ -5,7 +5,7 @@ import withPWA from 'next-pwa';
 const isProduction = process.env.NODE_ENV === 'production';
  
 const config = {
-  reactStrictMode: true,
+reactStrictMode: true,
   eslint: {
     ignoreDuringBuilds: true,
   },
