@@ -2,7 +2,7 @@
   "theme_color": "#2e9210",
   "background_color": "#706c38",
   "display": "standalone",
-  "start_url": ".",
+  "start_url": "https://walu-maydi3-91czafjhd-ianwanji.vercel.app/",
   "name": "WaluMaydi3",
   "short_name": "WM PWA",
   "icons": [
