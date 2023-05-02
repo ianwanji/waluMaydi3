@@ -21,7 +21,7 @@ reactStrictMode: true,
  
 const nextConfig = withPWA({
   dest: 'public',
-  scope: 'https://walu-maydi3-91czafjhd-ianwanji.vercel.app/',
+  scope: '/',
 
   disable: !isProduction,
 })(
