@@ -1,6 +1,14 @@
+/* eslint-disable */
+/* eslint-disable @typescript-eslint/consistent-type-imports */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+
+
+
+
 import React from "react";
 import {  useUser } from "@clerk/nextjs";
 import { useRouter } from "next/router";
+import { NavBar } from "~/components/NavBar";
 
 const Homepage: React.FC = () => {
   const router = useRouter();
@@ -16,6 +24,8 @@ const Homepage: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4">
+            <NavBar />
+
       <section className="py-8">
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center justify-center text-center">

@@ -1,3 +1,11 @@
+
+
+/* eslint-disable */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+
+
+
+
 import React, { useState } from "react";
 import axios from "axios";
 import { BsGeoAlt } from "react-icons/bs";

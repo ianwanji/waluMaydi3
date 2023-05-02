@@ -1,13 +1,15 @@
-
 /* eslint-disable */
 
 
-import { UserButton } from "@clerk/nextjs";
+
+
+import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
 
-export function NavBar() {
+export function NavBarCus() {
 
+  
   return (
     <div className="container mx-auto px-0">
       <header className="bg-green-500 text-white py-0">
@@ -56,38 +58,13 @@ export function NavBar() {
             <ul className="mt-4 flex flex-row space-x-4 font-medium text-white text-0xl">
               <li>
                 <Link
-                  href="/about"
+                  href="/profilePage"
                   
                   aria-current="page"
                 >
-                  About Us
-                </Link>
+Profile                </Link>
               </li>
               <li>
-                <Link
-                  href="/service"
-                 
-                  aria-current="page"
-                >
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/"
-                 
-                  aria-current="page"
-                >
-                  Home
-                </Link>
-              </li>
-              <Link
-                  href="/createanOffer"
-                 
-                  aria-current="page"
-                >
-                  Create an offer
-                </Link>
                 <Link
                   href="/offersPage"
                  
@@ -95,17 +72,17 @@ export function NavBar() {
                 >
                   Offers
                 </Link>
+              </li>
+              <li>
                 <Link
                   href="/sellers"
                  
                   aria-current="page"
                 >
-                  Sellers
+                  Our Sellers
                 </Link>
-              
-              <li>
-                <UserButton />
               </li>
+             
             </ul>
           </div>
         </nav>

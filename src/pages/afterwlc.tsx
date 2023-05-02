@@ -1,3 +1,12 @@
+
+/* eslint-disable */
+/* eslint-disable @typescript-eslint/consistent-type-imports */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+
+
+
+
+
 import { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";

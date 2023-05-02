@@ -1,3 +1,12 @@
+
+
+
+/* eslint-disable */
+
+
+
+
+
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { api } from '~/utils/api';
@@ -47,14 +56,14 @@ const SignUpCus: NextPage = () => {
         <meta name="keywords" content="offer, sell, description" />
       </Head>
 
-      <main className="flex min-h-screen items-center justify-center bg-cover bg-center bg-gray-200">
-        <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6">
-          <h1 className="text-4xl text-green-500 font-bold text-center mb-8">
-            Sign Up As Customer
+      <main className="flex min-h-screen items-center justify-center bg-cover bg-center bg-gray-100">
+        <div className="w-full max-w-xl bg-white rounded-lg shadow-lg p-16">
+          <h1 className="text-4xl text-black font-bold text-center mb-8">
+            Sign Up 
           </h1>
           <form onSubmit={handleSubmit(onSubmit)}>
             <fieldset>
-              <legend className="text-xl font-bold text-green-500 mb-4">
+              <legend className="text-xl font-bold text-black mb-4">
                 Personal Information
               </legend><div className="flex flex-col mb-4">
   <label htmlFor="fname" className="text-lg font-medium mb-2">
@@ -128,21 +137,20 @@ const SignUpCus: NextPage = () => {
   <option value="" disabled>
     Select gender
   </option>
-  <option value="male">Male</option>
-  <option value="female">Female</option>
-  <option value="other">Other</option>
+  <option value="M">Male</option>
+  <option value="F">Female</option>
+ 
 </select>
   </div>
   {errors.gender && (
     <span className="text-red-500 text-sm mt-1">This field is required</span>
   )}
 </div>
-<div className="flex justify-end">
-  <button
-    type="submit"
-    className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-400 focus:outline-none focus:bg-green-400"
-  >
-    Sign Up
+<div className="flex justify-center sm:col-span-2 mt-10">
+  <button className="mx-auto rounded bg-green-500 px-8 py-4 font-bold text-white text-lg hover:bg-green-700 transition-colors duration-300">
+    <div className="flex items-center justify-center">
+      <span className="text-sm text-white">Sign Up</span>
+    </div>
   </button>
 </div>
 </fieldset>

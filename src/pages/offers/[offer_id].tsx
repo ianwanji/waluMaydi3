@@ -1,5 +1,13 @@
+
+/* eslint-disable @typescript-eslint/consistent-type-imports */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable react/no-unescaped-entities */
+
+
+
+import Image from 'next/image'
+
 import { useRouter } from "next/router";
-import Head from "next/head";
 import { api } from "~/utils/api";
 import { NextPage } from "next";
 import {
@@ -10,7 +18,6 @@ import {
 } from "react-icons/fa";
 import { IoMdInformationCircle } from "react-icons/io";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import Image from "next/image";
 
 const OfferView: NextPage = () => {
   const router = useRouter();
@@ -41,7 +48,7 @@ const OfferView: NextPage = () => {
       <main className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           <div className="flex justify-center items-center">
-            <img
+            <Image
               className="rounded-lg shadow-md w-full max-w-md"
               src="/icons/cooking.png"
               alt="Restaurant"

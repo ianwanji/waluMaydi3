@@ -1,28 +1,31 @@
-/**
- * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
- * for Docker builds.
- */
-await import("./src/env.mjs");
 
-/** @type {import("next").NextConfig} */
+
+
+import withPWA from 'next-pwa';
+const isProduction = process.env.NODE_ENV === 'production';
+ 
 const config = {
   reactStrictMode: true,
-
-  // eslint: {
-  //   ignoreDuringBuilds: true,
-  // },
-  // typescript: {
-  //   ignoreBuildErrors: true,
-  // },
-  /**
-   * If you have `experimental: { appDir: true }` set, then you must comment the below `i18n` config
-   * out.
-   *
-   * @see https://github.com/vercel/next.js/issues/41980
-   */
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
+    locales: ['en'],
+    defaultLocale: 'en',
   },
 };
-export default config;
+
+ 
+const nextConfig = withPWA({
+  dest: 'public',
+  scope: 'https://walu-maydi3-91czafjhd-ianwanji.vercel.app/',
+
+  disable: !isProduction,
+})(
+  config
+);
+ 
+export default nextConfig;

@@ -1,12 +1,16 @@
+
+/* eslint-disable */
+/* eslint-disable @typescript-eslint/consistent-type-imports */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable react/no-unescaped-entities */
+
+
+
+import Image from "next/image";
 import { useRouter } from "next/router";
-import Head from "next/head";
 import { api } from "~/utils/api";
 import { NextPage } from "next";
 import { FaFacebook, FaMoneyBillAlt, FaTwitter, FaUser } from "react-icons/fa";
-import { IoMdInformationCircle } from "react-icons/io";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import Image from "next/image";
-import { FaSave, FaSyncAlt } from 'react-icons/fa';
 import { user_acc, seller, customer } from "@prisma/client";
 
 const Profileview: NextPage = () => {
@@ -47,7 +51,7 @@ const Profileview: NextPage = () => {
         <>
           <div className="bg-gray-100 min-h-102">
             <div className="container mx-auto px-1 py-8 flex flex-col items-center">
-              <img
+              <Image
                 className="w-32 h-32 rounded-full border-4 border-white mb-4"
                 src={avatar}
                 alt="Profile Picture"

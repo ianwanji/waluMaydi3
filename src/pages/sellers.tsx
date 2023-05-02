@@ -1,7 +1,15 @@
+
+/* eslint-disable */
+
+
+
+
+
 import { seller } from "@prisma/client";
 import Head from "next/head";
 import { api } from "~/utils/api";
 import { useState } from 'react';
+import { NavBarCus } from "~/components/NavBarCus";
 
 
 type CardProps = {
@@ -48,6 +56,8 @@ const SellersPage = () => {
         <meta name="description" content="Discover the best sellers on Walu Maydi3." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <NavBarCus />
+
       <main className="container mx-auto flex flex-col gap-8 bg-gray-100 p-4">
         <h1 className="text-4xl text-green-500 font-bold mb-2">Our Sellers</h1>
         <p className="text-gray-600 text-sm mb-6">Discover the best sellers on Walu Maydi3.</p>

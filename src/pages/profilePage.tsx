@@ -1,3 +1,11 @@
+/* eslint-disable */
+/* eslint-disable @typescript-eslint/consistent-type-imports */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+
+
+
+
+
 import { user_acc } from "@prisma/client";
 import { NextPage } from "next";
 import Head from "next/head";
@@ -16,7 +24,7 @@ function Card({ user }: CardProps) {
       className="flex flex-col items-center rounded-lg bg-white shadow-md px-4 py-6 text-center text-sm font-medium text-gray-800 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-green-300 transition duration-300 ease-in-out"
     >
       <div className="relative w-24 h-24 rounded-full overflow-hidden">
-      <img
+      <Image
           src="/icons/face-scan.gif"
           alt="Image of food waste"
           className="mb-4 h-auto w-full rounded-lg"

@@ -1,10 +1,18 @@
-import React, { useState, ChangeEvent } from 'react';
+/* eslint-disable */
+
+
+
+
+
+
+
+import React from 'react';
 import { useRouter } from 'next/router';
 import { api } from '~/utils/api';
 import { NextPage } from "next";
 import Head from "next/head";
 import { useForm } from "react-hook-form";
-import { FaBoxes, FaPlusCircle } from 'react-icons/fa';
+import {  FaPlusCircle } from 'react-icons/fa';
 import zxcvbnModule from 'zxcvbn';
 
 
@@ -61,42 +69,41 @@ import zxcvbnModule from 'zxcvbn';
   
   return (
     <>
-        <Head>
-        <title>Sign Up </title>
-        <meta name="description" content="Walu Maydi3" />
-        <link rel="icon" href="/iconnav.ico" />
-        <link rel="stylesheet" href="/styles.css" />
-        <meta name="keywords" content="offer, sell, description" />
+      <Head>
+        {/* Head content */}
       </Head>
-
-      <div className="bg-gray-100 py-8">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="lg:text-center">
+  
+      <div className="bg-gray-50 py-8">
+        <div className="mx-auto max-w-6xl px-4 sm:px-10 lg:px-10">
+          <div className="flex justify-center">
             <h2
-              className="text-lg font-semibold uppercase tracking-wide text-yellow-500 "
-              style={{ fontFamily: "times new roman" }}
+              className="text-3xl font-bold uppercase tracking-wide text-black text-center"
+              style={{ fontFamily: "YourFontName, sans-serif" }}
             >
-Sign Up             </h2>
+              Sign Up
+            </h2>
           </div>
-          
-       
-           <div className="mt-10">
+  
+          <div className="mt-10">
             <form
               className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8"
               onSubmit={handleSubmit(onSubmit)}
             >
-              <div className="mb-2 flex items-center">
+              {/* User ID */}
+              <div className="mb-2 flex items-center form-field">
                 <label
                   htmlFor="user_id"
-                  className="mr-4 block text-lg font-medium text-gray-700"
+                  className="mr-50 ml-50 block text-lg font-medium text-black"
+                  style={{ minWidth: "145px" }}
                 >
-                 User ID 
+                  User ID
                 </label>
-                <div className="relative mt-1 rounded-md shadow-sm">
+                <div className="relative mt-1 rounded-lg shadow-sm">
                   <input
                     type="number"
                     id="user_id"
-                    className="block w-full px-4 py-2 focus:border-green-500 focus:border-indigo-500 focus:outline-none focus:ring-green-500 focus:ring-indigo-500 sm:text-sm"
+                    className="block w-full px-4 py-4 rounded-lg focus:border-green-500 focus:border-indigo-500 focus:outline-none focus:ring-green-500 focus:ring-indigo-500 sm:text-sm text-left w-full"
+                    style={{ width: "300px" }} 
                     placeholder="Enter User ID"
                     {...register("user_id", { required: true })}
                   />
@@ -108,139 +115,134 @@ Sign Up             </h2>
                   </div>
                 </div>
               </div>
+  
+              {/* Phone number */}
+              <div className="mb-2 flex items-center form-field">
+  <label
+    htmlFor="phoneNumber"
+    className="mr-0 ml-50 block text-lg font-medium text-black"
+    style={{ minWidth: "145px" }}
+  >
+    Phone Number
+  </label>
+  <div className="relative mt-1 rounded-lg shadow-sm">
+    <input
+      type="number"
+      id="phonenumber"
+      className="block w-full px-4 py-4 rounded-lg focus:border-green-500 focus:border-indigo-500 focus:outline-none focus:ring-green-500 focus:ring-indigo-500 sm:text-sm text-left w-full"
+      style={{ width: "300px" }} // Set the desired width here (e.g., 300px)
+      placeholder="Enter phone number"
+      {...register("phonenumber", { required: true })}
+    />
+    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3"></div>
+  </div>
+</div>
 
-              <div className="mb-2 flex items-center">
+  
+              {/* Username */}
+              <div className="mb-2 flex items-center form-field">
                 <label
                   htmlFor="username"
-                  className="mr-4 block text-lg font-medium text-gray-700"
+                  className="mr-0 ml-0 block text-lg font-medium text-black"
+                  style={{ minWidth: "145px" }}
                 >
                   Username
                 </label>
-                <div className="relative mt-1 rounded-md shadow-sm">
+                <div className="relative mt-1 rounded-lg shadow-sm">
                   <input
-                    type="string"
+                    type="text"
                     id="username"
-                    className="block w-full px-4 py-2 focus:border-green-500 focus:border-indigo-500 focus:outline-none focus:ring-green-500 focus:ring-indigo-500 sm:text-sm"
-                    placeholder="Enter Username"
+                    className="block w-full px-4 py-4 rounded-lg focus:border-green-500 focus:border-indigo-500 focus:outline-none focus:ring-green-500 focus:ring-indigo-500 sm:text-sm text-left w-full"
+                    style={{ width: "300px" }} 
+                    placeholder="
+                    Enter username"
                     {...register("username", { required: true })}
-                  />
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                    <FaPlusCircle
-                      className="h-6 w-6 animate-pulse text-green-500"
-                      aria-hidden="true"
                     />
-                  </div>
-                </div>
-              </div>
-
-              <div className="mb-2 flex items-center">
-                <label
-                  htmlFor="passwoed"
-                  className="mr-4 block text-lg font-medium text-gray-700"
-                >
-                  Password
-                </label>
-                <div className="relative mt-1 rounded-md shadow-sm">
-                  <input
-                    type="string"
-                    id="username"
-                    className="block w-full px-4 py-2 focus:border-green-500 focus:border-indigo-500 focus:outline-none focus:ring-green-500 focus:ring-indigo-500 sm:text-sm"
-                    placeholder="Enter Password"
-                    {...register("password", { required: true })}
-                  />
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                    <FaPlusCircle
-                      className="h-6 w-6 animate-pulse text-green-500"
-                      aria-hidden="true"
-                    />
-                  </div>
-                </div>
-              </div>
-
-
-              <div className="mb-2 flex items-center">
-                <label
-                  htmlFor="phone number"
-                  className="mr-4 block text-lg font-medium text-gray-700"
-                >
-Phone Number                </label>
-                <div className="relative mt-1 rounded-md shadow-sm">
-                  <input
-                    type="string"
-                    id="username"
-                    className="block w-full px-4 py-2 focus:border-green-500 focus:border-indigo-500 focus:outline-none focus:ring-green-500 focus:ring-indigo-500 sm:text-sm"
-                    placeholder="Enter Phone Number"
-                    {...register("phonenumber", { required: true })}
-                  />
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                    <FaPlusCircle
-                      className="h-6 w-6 animate-pulse text-green-500"
-                      aria-hidden="true"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="mb-2 flex items-center">
-                <label
-                  htmlFor="email address"
-                  className="mr-4 block text-lg font-medium text-gray-700"
-                >
-                  Email Address
-                </label>
-                <div className="relative mt-1 rounded-md shadow-sm">
-                  <input
-                    type="string"
-                    id="email address"
-                    className="block w-full px-4 py-2 focus:border-green-500 focus:border-indigo-500 focus:outline-none focus:ring-green-500 focus:ring-indigo-500 sm:text-sm"
-                    placeholder="Enter Email Address"
-                    {...register("emailaddress", { required: true })}
-                  />
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                    <FaPlusCircle
-                      className="h-6 w-6 animate-pulse text-green-500"
-                      aria-hidden="true"
-                    />
-                  </div>
-                </div>
-              </div>
-
-            <div className="flex flex-col gap-2 w-full">
-  <label htmlFor="usertype" className="text-lg font-medium text-black">
-    <FaBoxes className="inline-block mr-2 mb-1" />
-    User Type
-  </label>
-  <select
-    id="usertype"
-    className="block w-full rounded-lg border border-black-200 bg-white p-2.5 text-sm text-gray-900 focus:border-green-500 focus:ring-green-500"
-    style={{ fontFamily: 'Times New Roman' }}
-    {...register("usertype", { required: true })}
-  >
-    <option value="">Select user type</option>
-    <option value="S">Seller</option>
-    <option value="C">Customer</option>
-    </select>
-    </div>
-
-
-    <div className="flex justify-center sm:col-span-2">
-                <button className="mx-auto rounded bg-yellow-500 px-3 py-1 font-bold text-white hover:bg-yellow-700">
-                  <div className="flex items-center justify-center">
-                    <span>Sign Up </span>
-                    <FaPlusCircle className="ml-2 h-6 w-6 animate-pulse" />
-                  </div>
-                </button>
-              </div>
-            </form>
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3"></div>
+                    </div>
+                    </div>
+                            {/* Password */}
+        <div className="mb-2 flex items-center form-field">
+          <label
+            htmlFor="password"
+            className="mr-0 ml-0 block text-lg font-medium text-black"
+            style={{ minWidth: "145px" }}
+          >
+            Password
+          </label>
+          <div className="relative mt-1 rounded-lg shadow-sm">
+            <input
+              type="password"
+              id="password"
+              className="block w-full px-4 py-4 rounded-lg focus:border-green-500 focus:border-indigo-500 focus:outline-none focus:ring-green-500 focus:ring-indigo-500 sm:text-sm text-left w-full"
+              style={{ width: "300px" }} 
+              placeholder="Enter password"
+              {...register("password", { required: true })}
+            />
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3"></div>
           </div>
         </div>
-      </div>
-      </>
-  );
+
+        {/* Email Address */}
+        <div className="mb-2 flex items-center form-field">
+          <label
+            htmlFor="email_address"
+            className="mr-0 ml-0 block text-lg font-medium text-black"
+            style={{ minWidth: "145px" }}
+          >
+            Email Address
+          </label>
+          <div className="relative mt-1 rounded-lg shadow-sm">
+            <input
+              type="email"
+              id="email_address"
+              className="block w-full px-4 py-4 rounded-lg focus:border-green-500 focus:border-indigo-500 focus:outline-none focus:ring-green-500 focus:ring-indigo-500 sm:text-sm text-left w-full"
+              style={{ width: "300px" }} 
+              placeholder="Enter Email Address"
+              {...register("emailaddress", { required: true })}
+            />
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-0"></div>
+          </div>
+        </div>
+
+        {/* User Type */}
+        <div className="mb-2 flex items-center form-field">
+  <label
+    htmlFor="usertype"
+    className="mr-0 ml-0 block text-lg font-medium text-black"
+    style={{ minWidth: "145px" }}
+  >
+    User Type
+  </label>
+  <div className="relative mt-1 rounded-lg shadow-sm">
+    <select
+      id="usertype"
+      className="block w-full px-4 py-4 rounded-lg focus:border-green-500 focus:border-indigo-500 focus:outline-none focus:ring-green-500 focus:ring-indigo-500 sm:text-sm text-left w-64 h-15" // Updated className and height
+      style={{ fontFamily: "Times New Roman", fontSize: "16px" }} // Added fontSize
+      {...register("usertype", { required: true })}
+    >
+      <option value="">Select user type</option>
+      <option value="S">Seller</option>
+      <option value="C">Customer</option>
+    </select>
+  </div>
+</div>
 
 
+        {/* Sign Up Button */}
+        <div className="flex justify-center sm:col-span-2 mt-4">
+  <button className="mx-auto rounded bg-green-500 px-8 py-4 font-bold text-white text-lg hover:bg-green-700 transition-colors duration-300">
+    <div className="flex items-center justify-center">
+      <span className="text-sm text-white">Next</span>
+    </div>
+  </button>
+</div>
 
-};
-
+      </form>
+    </div>
+  </div>
+</div>
+</>
+)};
+  
 export default SignUpUser;
-

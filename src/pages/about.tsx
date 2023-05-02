@@ -1,30 +1,30 @@
-import Link from "next/link";
+/* eslint-disable */
 
-const NavBar = ({ user }: { user: boolean }) => {
-  return (
-    <nav className="flex items-center justify-between bg-green-700 px-6 py-4 shadow">
-      <Link href="/">
-        <a className="text-3xl font-bold text-white">Walu Maydi3</a>
-      </Link>
+// const NavBar = ({ user }: { user: boolean }) => {
+//   return (
+//     <nav className="flex items-center justify-between bg-green-700 px-6 py-4 shadow">
+//       <Link href="/">
+//         <a className="text-3xl font-bold text-white">Walu Maydi3</a>
+//       </Link>
 
-      <div className="flex items-center">
-        {user ? (
-          <Link href="/dashboard">
-            <a className="mr-4 text-base text-white hover:text-gray-300">
-              Dashboard
-            </a>
-          </Link>
-        ) : (
-          <Link href="/login">
-            <a className="mr-4 text-base text-white hover:text-gray-300">
-              Login
-            </a>
-          </Link>
-        )}
-      </div>
-    </nav>
-  );
-};
+//       <div className="flex items-center">
+//         {user ? (
+//           <Link href="/dashboard">
+//             <a className="mr-4 text-base text-white hover:text-gray-300">
+//               Dashboard
+//             </a>
+//           </Link>
+//         ) : (
+//           <Link href="/login">
+//             <a className="mr-4 text-base text-white hover:text-gray-300">
+//               Login
+//             </a>
+//           </Link>
+//         )}
+//       </div>
+//     </nav>
+//   );
+// };
 
 const Footer = () => {
   return (

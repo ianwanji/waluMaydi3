@@ -2,11 +2,12 @@
 /* eslint-disable */
 
 
-import { UserButton } from "@clerk/nextjs";
+import { UserButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
 
 export function NavBar() {
+  const user = useUser();
 
   return (
     <div className="container mx-auto px-0">
@@ -56,29 +57,29 @@ export function NavBar() {
             <ul className="mt-4 flex flex-row space-x-4 font-medium text-white text-0xl">
               <li>
                 <Link
-                  href="/about"
+                  href="/profilePage"
                   
                   aria-current="page"
                 >
-                  About Us
+                  Profile
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/service"
+                  href="/offersPage"
                  
                   aria-current="page"
                 >
-                  Services
+                  My offers
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/"
+                  href="/reservations"
                  
                   aria-current="page"
                 >
-                  Home
+                  Reservations
                 </Link>
               </li>
               <Link
@@ -88,20 +89,7 @@ export function NavBar() {
                 >
                   Create an offer
                 </Link>
-                <Link
-                  href="/offersPage"
-                 
-                  aria-current="page"
-                >
-                  Offers
-                </Link>
-                <Link
-                  href="/sellers"
-                 
-                  aria-current="page"
-                >
-                  Sellers
-                </Link>
+                
               
               <li>
                 <UserButton />
