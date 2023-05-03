@@ -2,12 +2,20 @@
 /* eslint-disable */
 
 
+/* eslint-disable */
+
+
 import { UserButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 
-export function NavBar() {
-  const user = useUser();
+export function NavBarSeller(){
+  const [isNavbarCusOpen, setIsNavbarSellerOpen] = useState(false);
+
+  const toggleNavbarSeller = () => {
+    setIsNavbarSellerOpen(!isNavbarCusOpen);
+  };
 
   return (
     <div className="container mx-auto px-0">
@@ -25,16 +33,14 @@ export function NavBar() {
             </Link>
           </div>
 
-
-
           <button
-            data-collapse-toggle="navbar-default"
             type="button"
             className="ml-3 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 md:hidden"
             aria-controls="navbar-default"
-            aria-expanded="false"
+            aria-expanded={isNavbarCusOpen ? "true" : "false"}
+            onClick={toggleNavbarSeller}
           >
-            <span className="sr-only">Welcome</span>
+            <span className="sr-only">Toggle navigation</span>
             <svg
               className="h-6 w-6"
               aria-hidden="true"
@@ -51,7 +57,7 @@ export function NavBar() {
           </button>
 
           <div
-            className="hidden w-full md:block md:w-auto"
+            className={`${isNavbarCusOpen ? "block" : "hidden"} w-full md:block md:w-auto`}
             id="navbar-default"
           >
             <ul className="mt-4 flex flex-row space-x-4 font-medium text-white text-0xl">
@@ -59,7 +65,8 @@ export function NavBar() {
                 <Link
                   href="/profilePage"
                   
-                  aria-current="page"
+                  aria-current="page" 
+                  className="hover:text-gray-300"
                 >
                   Profile
                 </Link>
@@ -69,23 +76,17 @@ export function NavBar() {
                   href="/offersPage"
                  
                   aria-current="page"
+                  className="hover:text-gray-300"
                 >
                   My offers
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/reservations"
-                 
-                  aria-current="page"
-                >
-                  Reservations
-                </Link>
-              </li>
+              
               <Link
                   href="/createanOffer"
                  
                   aria-current="page"
+                  className="hover:text-gray-300"
                 >
                   Create an offer
                 </Link>

@@ -6,6 +6,8 @@
 
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { useState } from "react";
+
 import { api } from '~/utils/api';
 import { NextPage } from "next";
 import { useForm } from "react-hook-form";
@@ -33,6 +35,7 @@ export const SignIn: NextPage = () => {
 
   const { data: usersList } = api.users.listUsers.useQuery();
   const router = useRouter();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 
   const { register, handleSubmit } = useForm<UserForm>();
@@ -66,6 +69,7 @@ export const SignIn: NextPage = () => {
           // Check if password is correct
           if (current.user.password === formData.password) {
             console.log(`Welcome! User ID: ${current.user.user_id}`);
+            setIsLoggedIn(true);
                router.push(`/users/${current.user.user_id}`);
           } else {
             console.log("Password incorrect.");
@@ -83,7 +87,21 @@ export const SignIn: NextPage = () => {
   
   
   return (
+
     <>
+          <nav>
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          {isLoggedIn && (
+            <li>
+              <a href="/profile">Profile</a>
+            </li>
+          )}
+        </ul>
+      </nav>
+
       <div className="bg-gray-50 py-8">
         <div className="mx-auto max-w-6xl px-4 sm:px-10 lg:px-10">
           <div className="flex justify-center">

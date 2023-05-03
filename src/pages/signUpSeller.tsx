@@ -44,7 +44,7 @@ const SignUpSeller: NextPage = () => {
       location: formData.location,
       category_id: parseInt(formData.category_id),
     }).then(() => {
-      router.push("/createanOffer");
+      router.push("/signInPage");
     });
   };
   
@@ -129,14 +129,19 @@ const SignUpSeller: NextPage = () => {
             
                 Category ID
 </label>
-<input
-id="category_id"
-type="number"
-className="block w-full rounded-lg border border-green-200 bg-white p-2.5 text-sm text-gray-900 focus:border-black-500 focus:ring-black-500"
-style={{ fontFamily: 'Times New Roman' }}
-{...register("category_id", { required: true })}
-/>
-</div>      <div className="flex justify-center sm:col-span-2 mt-4">
+<select
+  id="category_id"
+  className="block w-full rounded-lg border border-green-200 bg-white p-2.5 text-sm text-gray-900 focus:border-black-500 focus:ring-black-500"
+  style={{ fontFamily: 'Times New Roman' }}
+  {...register("category_id", { required: true })}
+>
+  <option value="">Select a category</option>
+  <option value="1">Restaurant</option>
+  <option value="2">Coffee Shop</option>
+  <option value="3">Hotel</option>
+  <option value="4">Bakery</option>
+</select>
+</div>    <div className="flex justify-center sm:col-span-2 mt-4">
   <button className="mx-auto rounded bg-green-500 px-8 py-4 font-bold text-white text-lg hover:bg-green-700 transition-colors duration-300">
     <div className="flex items-center justify-center">
       <span className="text-sm text-white">Sign Up</span>

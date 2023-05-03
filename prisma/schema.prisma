@@ -41,7 +41,7 @@ model message {
 model offer {
   offer_id          Int           @id @default(autoincrement())
   seller_id         Int?
-  offer_description String?       @db.VarChar(50)
+  offer_description String?       @db.VarChar(100)
   price             Decimal       @db.Decimal(8, 2)
   numberofboxes     Int?
   seller            seller?       @relation(fields: [seller_id], references: [seller_id], onDelete: Cascade, map: "fk_seller")
@@ -79,7 +79,7 @@ model reservation {
 
 model seller {
   seller_id          Int       @id
-  seller_name        String    @db.VarChar(15)
+  seller_name        String    @db.VarChar(20)
   seller_description String?   @db.VarChar(100)
   location           String?   @db.Char(10)
   usertype           String    @default("S") @db.Char(1)
@@ -95,7 +95,7 @@ model seller {
 model user_acc {
   user_id      Int       @id @default(autoincrement())
   password     String    @db.VarChar(15)
-  username     String    @db.VarChar(15)
+  username     String    @unique @db.VarChar(15)
   phonenumber  String?   @db.VarChar(10)
   emailaddress String    @default("0") @db.VarChar(50)
   usertype     String    @db.Char(1)

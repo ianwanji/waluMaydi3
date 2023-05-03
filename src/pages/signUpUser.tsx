@@ -12,60 +12,55 @@ import { api } from '~/utils/api';
 import { NextPage } from "next";
 import Head from "next/head";
 import { useForm } from "react-hook-form";
-import {  FaPlusCircle } from 'react-icons/fa';
+//import { FaPlusCircle } from 'react-icons/fa';
 import zxcvbnModule from 'zxcvbn';
 
+type createUserForm = {
+  username: string;
+  password: string;
+  phonenumber: string;
+  emailaddress: string;
+  usertype: string;
+};
 
-
-
-  const SignUpUser: NextPage = () => {
-    type createUserForm = {
-    user_id: string;
-    username: string;
-    password: string;
-    phonenumber: string;
-    emailaddress: string;
-    usertype: string;
-    };
-
+const SignUpUser: NextPage = () => {
   const createUser = api.users.createUser.useMutation();
   const router = useRouter();
 
   const { register, handleSubmit } = useForm<createUserForm>();
-  const onSubmit = (formData: createUserForm) => {
+  const onSubmit = async (formData: createUserForm) => {
     const passwordStrength = zxcvbnModule(formData.password);
-    
+
     if (passwordStrength.score < 2) {
       // If password is weak, show error message and prevent form submission
       alert('Your password is too weak. Please choose a stronger password.');
       return;
     }
 
-    if (formData.usertype === 'S') {
-      router.push({
-        pathname: '/signUpSeller',
-        query: { user_id: formData.user_id },
+    try {
+      const createdUser = await createUser.mutateAsync({
+        username: formData.username,
+        password: formData.password,
+        phonenumber: formData.phonenumber,
+        emailaddress: formData.emailaddress,
+        usertype: formData.usertype,
       });
-    } else if (formData.usertype === 'C') {
-      router.push({
-        pathname: '/signUpCus',
-        query: { user_id: formData.user_id },
-      });
+
+      if (formData.usertype === 'S') {
+        router.push({
+          pathname: '/signUpSeller',
+          query: { user_id: createdUser.user_id },
+        });
+      } else if (formData.usertype === 'C') {
+        router.push({
+          pathname: '/signUpCus',
+          query: { user_id: createdUser.user_id },
+        });
+      }
+    } catch (error) {
+      console.error(error);
     }
-    createUser
-  .mutateAsync({
-    user_id: parseInt(formData.user_id),
-    username: formData.username,
-    password: formData.password,
-    phonenumber: formData.phonenumber,
-    emailaddress: formData.emailaddress,
-    usertype: formData.usertype,
-  })
-  /* .then(() => {
-    router.push("/");
-  }); */
   };
-  
   
   return (
     <>
@@ -89,34 +84,6 @@ import zxcvbnModule from 'zxcvbn';
               className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8"
               onSubmit={handleSubmit(onSubmit)}
             >
-              {/* User ID */}
-              <div className="mb-2 flex items-center form-field">
-                <label
-                  htmlFor="user_id"
-                  className="mr-50 ml-50 block text-lg font-medium text-black"
-                  style={{ minWidth: "145px" }}
-                >
-                  User ID
-                </label>
-                <div className="relative mt-1 rounded-lg shadow-sm">
-                  <input
-                    type="number"
-                    id="user_id"
-                    className="block w-full px-4 py-4 rounded-lg focus:border-green-500 focus:border-indigo-500 focus:outline-none focus:ring-green-500 focus:ring-indigo-500 sm:text-sm text-left w-full"
-                    style={{ width: "300px" }} 
-                    placeholder="Enter User ID"
-                    {...register("user_id", { required: true })}
-                  />
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                    <FaPlusCircle
-                      className="h-6 w-6 animate-pulse text-green-500"
-                      aria-hidden="true"
-                    />
-                  </div>
-                </div>
-              </div>
-  
-              {/* Phone number */}
               <div className="mb-2 flex items-center form-field">
   <label
     htmlFor="phoneNumber"

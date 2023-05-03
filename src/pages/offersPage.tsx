@@ -10,6 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { api } from "~/utils/api";
 import { offer } from "@prisma/client";
+import head from "./signInPage";
 
 import { FaArrowCircleRight } from 'react-icons/fa';
 import { NavBarCus } from "~/components/NavBarCus";
@@ -37,7 +38,7 @@ function Card({ Offer }: CardProps) {
          alt="Sold out"
          width={200}
          height={200}
-       />
+/>
         )}
       </div>
       <div className="p-6">

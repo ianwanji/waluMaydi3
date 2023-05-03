@@ -12,6 +12,10 @@ import { api } from "~/utils/api";
 import { NextPage } from "next";
 import { FaFacebook, FaMoneyBillAlt, FaTwitter, FaUser } from "react-icons/fa";
 import { user_acc, seller, customer } from "@prisma/client";
+import { NavBarCus } from "~/components/NavBarCus";
+import { NavBarSeller } from "~/components/NavBarSeller";
+
+
 
 const Profileview: NextPage = () => {
     const router = useRouter();
@@ -49,6 +53,7 @@ const Profileview: NextPage = () => {
     : '/icons/open-sign.png';
     return (
         <>
+              {user.usertype === "C" ? <NavBarCus /> : <NavBarSeller />}
           <div className="bg-gray-100 min-h-102">
             <div className="container mx-auto px-1 py-8 flex flex-col items-center">
               <Image
@@ -126,5 +131,6 @@ const Profileview: NextPage = () => {
             </div>
           </main>
         </>
-      );             };
+      );        
+         };
   export default Profileview;

@@ -92,19 +92,36 @@ export const newUser = createTRPCRouter({
   createUser: publicProcedure
     .input(
       z.object({
-        user_id:z.number(),
         username: z.string(),
         password: z.string(),
         phonenumber: z.string(),
         emailaddress: z.string(),
         usertype: z.string()
         }))
-        .mutation(async({ input,ctx }) => {
-          const users=await ctx.prisma.user_acc.create({
-               data:{
-                   ...input,
-               },
-           });
+        .mutation(async ({ input, ctx }) => {
+          const lastUser = await ctx.prisma.user_acc.findFirst({
+            orderBy: {
+              user_id: "desc",
+            },
+          });
+    
+          const newUserId = (lastUser?.user_id ?? 0) + 1;
+    
+          const users= await ctx.prisma.user_acc.create({
+            data: {
+              ...input,
+              user_id: newUserId,
+            },
+          });
+    
+
+          
+      
+  
+       
+      
+      
       return users;
     }),
-});
+
+    });
