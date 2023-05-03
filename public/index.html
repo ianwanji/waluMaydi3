@@ -2,25 +2,26 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="/icon-192x192.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <link rel="icon" type="image/png" href="public/icon-192x192.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="theme-color" content="#2e9210" />
     <meta name="description" content="Walu Maydi3" />
-    <link rel="apple-touch-icon" href="/icon-192x192.png" />
-    <link rel="manifest" href="./manifest.json" />
+    <link rel="apple-touch-icon" href="/public/icon-512x512.png /">
+    <link rel="manifest" href="/public/manifest.json" />
     <title>Walu Maydi3</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script>
-        if('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./serviceworker.js')
-                    .then((reg) => console.log('Success: ', reg.scope))
-                    .catch((err) => console.log('Failure: ', err));
-            })
-        }
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/serviceworker.js")
+            .then((reg) => console.log("Service worker registered."))
+            .catch((err) => console.log("Service worker registration failed: ", err));
+        });
+      }
     </script>
   </body>
 </html>
