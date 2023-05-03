@@ -42,7 +42,7 @@ const SignUpCus: NextPage = () => {
       dob: new Date(formData.dob),
       gender: formData.gender,
     }).then(() => {
-      router.push("/");
+      router.push("/offersPage");
     });
   };
   

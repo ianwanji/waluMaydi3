@@ -13,8 +13,8 @@ import { api } from "../utils/api";
 import { FaPlusCircle, FaMoneyBillWave, FaBoxes } from "react-icons/fa";
 import { useState, useEffect } from "react";
 
-const createanOffer: NextPage = () => {
-  type createOfferForm = {
+const CreateAnOffer: NextPage = () => {
+  type CreateOfferForm = {
     offer_id: string;
     seller_id: string;
     offer_description: string;
@@ -23,31 +23,29 @@ const createanOffer: NextPage = () => {
   };
 
   const [showNotification, setShowNotification] = useState(false);
+  const [descriptionLength, setDescriptionLength] = useState(0);
+
+  const handleDescriptionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setDescriptionLength(event.target.value.length);
+  };
+
 
   const createOffer = api.offers.createOffers.useMutation();
   const router = useRouter();
 
-  const { register, handleSubmit } = useForm<createOfferForm>();
-  const onSubmit = (formData: createOfferForm) => {
+  const { register, handleSubmit } = useForm<CreateOfferForm>();
+  const onSubmit = (formData: CreateOfferForm) => {
     createOffer.mutateAsync({
       ...formData,
       price: parseFloat(formData.price),
       numberofboxes: parseInt(formData.numberofboxes),
       seller_id: parseInt(formData.seller_id),
+    }).then(() => {
+      setShowNotification(true);
+      setTimeout(() => setShowNotification(false), 5000);
+      router.push("/");
     });
-    setShowNotification(true);
-
-    router.push("/");
   };
-  useEffect(() => {
-    let timeout: NodeJS.Timeout;
-    if (showNotification) {
-      timeout = setTimeout(() => {
-        setShowNotification(false);
-      }, 100000);
-    }
-    return () => clearTimeout(timeout);
-  }, [showNotification]);
 
   return (
     <>
@@ -60,142 +58,121 @@ const createanOffer: NextPage = () => {
       </Head>
 
       <div className="bg-gray-100 py-8">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="lg:text-center">
-            <h2
-              className="text-lg font-semibold uppercase tracking-wide text-yellow-500 "
-              style={{ fontFamily: "times new roman" }}
-            >
+        <div className="container mx-auto px-4 rounded-lg">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-semibold text-yellow-500 uppercase">
               Create an Offer
             </h2>
           </div>
-          {showNotification && (
-            <div
-              className="relative rounded border border-green-400 bg-green-100 px-4 py-3 text-green-700"
-              role="alert"
-            >
-              <strong className="font-bold">Success!</strong>
-              <span className="block sm:inline">
-                {" "}
-                Offer has been successfully created.
-              </span>
-            </div>
-          )}
 
-          <div className="mt-10">
-            <form
-              className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8"
-              onSubmit={handleSubmit(onSubmit)}
-            >
-              <div className="mb-2 flex items-center">
-                
-                
+          <div className="max-w-lg mx-auto">
+            {showNotification && (
+              <div
+                className="relative px-6 py-4 mb-4 text-green-700 bg-green-100 border border-green-400 rounded"
+                role="alert"
+              >
+                <strong className="font-bold">Success!</strong>
+                <span className="block sm:inline">
+                  {" "}
+                  Offer has been successfully created.
+                </span>
               </div>
+            )}
 
-              <div className="mb-2 flex items-center">
-                <label
-                  htmlFor="seller_id"
-                  className="mr-4 block text-lg font-medium text-gray-700"
-                >
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="mb-4">
+                <label htmlFor="seller_id" className="block mb-2 font-bold">
                   Seller ID
                 </label>
-                <div className="relative mt-1 rounded-md shadow-sm">
+                <div className="relative">
                   <input
                     type="number"
                     id="seller_id"
-                    className="block w-full px-4 py-2 focus:border-green-500 focus:border-indigo-500 focus:outline-none focus:ring-green-500 focus:ring-indigo-500 sm:text-sm"
+                    className="block w-full px-4 py-2 mb-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent rounded-lg"
                     placeholder="Enter Seller ID"
                     {...register("seller_id", { required: true })}
                   />
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                    <FaPlusCircle
-                      className="h-6 w-6 animate-pulse text-green-500"
-                      aria-hidden="true"
-                    />
+                  <div className="absolute top-0 right-0 flex items-center h-full pr-2">
+                    <FaPlusCircle className="text-green-500" />
                   </div>
                 </div>
               </div>
 
-              <div className="mb-2 flex items-center">
-                <label
-                  htmlFor="offer_description"
-                  className="mr-4 block text-lg font-medium text-gray-700"
-                >
-                  Description
-                </label>
-                <div className="mt-1">
-                  <textarea
-                    id="offer_description"
-                    rows={3}
-                    className="block w-full px-4 py-2 focus:border-green-500 focus:border-indigo-500 focus:outline-none focus:ring-green-500 focus:ring-indigo-500 sm:text-sm"
-                    placeholder="Enter Offer Description"
-                    {...register("offer_description", { required: true })}
-                  ></textarea>
-                </div>
-              </div>
-              <div className="mb-2 flex items-center">
-                <label
-                  htmlFor="price"
-                  className="mr-4 block text-lg font-medium text-gray-700"
-                >
-                  Price
-                </label>
-                <div className="relative mt-1 rounded-md shadow-sm">
-                  <input
-                    type="number"
-                    id="price"
-                    className="block w-full px-4 py-2 focus:border-green-500 focus:border-indigo-500 focus:outline-none focus:ring-green-500 focus:ring-indigo-500 sm:text-sm"
-                    placeholder="Enter Price"
-                    {...register("price", { required: true })}
-                  />
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                    <FaMoneyBillWave
-                      className="h-6 w-6 animate-pulse text-green-500"
-                      aria-hidden="true"
-                    />
-                  </div>
-                </div>
-              </div>
+          <div className="mb-4">
+            <label htmlFor="offer_description" className="block mb-2 font-bold">
+              Offer Description
+            </label>
+            <div className="relative">
+              <textarea
+                id="offer_description"
+                className="block w-full px-4 py-2 mb-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent rounded-lg"
+                placeholder="Enter Offer Description"
+                {...register("offer_description", { required: true })}
+                                    maxLength={100}
+                                    onChange={handleDescriptionChange}
 
-              <div className="mb-2 flex items-center">
-                <label
-                  htmlFor="quantity"
-                  className="mr-4 block text-lg font-medium text-gray-700"
-                >
-                  Quantity
-                </label>
-                <div className="relative mt-1 rounded-md shadow-sm">
-                  <input
-                    type="number"
-                    id="quantity"
-                    className="block w-full px-4 py-2 focus:border-green-500 focus:border-indigo-500 focus:outline-none focus:ring-green-500 focus:ring-indigo-500 sm:text-sm"
-                    placeholder="Enter Quantity"
-                    {...register("numberofboxes", { required: true })}
-                  />
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                    <FaBoxes
-                      className="h-6 w-6 animate-pulse text-green-400"
-                      aria-hidden="true"
-                    />
-                  </div>
-                </div>
-              </div>
 
-              <div className="flex justify-center sm:col-span-2">
-                <button className="mx-auto rounded bg-yellow-500 px-3 py-1 font-bold text-white hover:bg-yellow-700">
-                  <div className="flex items-center justify-center">
-                    <span>Submit</span>
-                    <FaPlusCircle className="ml-2 h-6 w-6 animate-pulse" />
-                  </div>
-                </button>
+              />
+              <div className="absolute top-0 right-0 flex items-center h-full pr-2">
+                <FaPlusCircle className="text-green-500" />
               </div>
-            </form>
+            </div>
+            <p className="text-sm text-gray-500">{descriptionLength} / 100 characters</p>
+
+
           </div>
-        </div>
+
+          <div className="mb-4">
+            <label htmlFor="price" className="block mb-2 font-bold">
+              Price
+            </label>
+            <div className="relative">
+              <input
+                type="number"
+                id="price"
+                className="block w-full px-4 py-2 mb-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent rounded-lg"
+                placeholder="Enter Price"
+                {...register("price", { required: true, min: 0 })}
+              />
+              <div className="absolute top-0 right-0 flex items-center h-full pr-2">
+                <FaMoneyBillWave className="text-green-500" />
+              </div>
+            </div>
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="numberofboxes" className="block mb-2 font-bold">
+              Number of Boxes
+            </label>
+            <div className="relative">
+              <input
+                type="number"
+                id="numberofboxes"
+                className="block w-full px-4 py-2 mb-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent rounded-lg"
+                placeholder="Enter Number of Boxes"
+                {...register("numberofboxes", { required: true, min: 1 })}
+              />
+              <div className="absolute top-0 right-0 flex items-center h-full pr-2">
+                <FaBoxes className="text-green-500" />
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <button
+              type="submit"
+              className="px-4 py-2 font-bold text-white bg-green-500 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50"
+              disabled={createOffer.isLoading}
+            >
+              {createOffer.isLoading ? "Creating..." : "Create"}
+            </button>
+          </div>
+        </form>
       </div>
-    </>
-  );
-};
-export default createanOffer;
+    </div>
+  </div>
+</>
+);
+};export default CreateAnOffer;
 
 

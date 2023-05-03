@@ -15,12 +15,12 @@ import { FaUserAlt } from "react-icons/fa";
 const WelcomePage: NextPage = () => {
   const router = useRouter();
 
-  const handleCustomerClick = () => {
-    router.push("/signInPageCus");
+  const handleLogInClick = () => {
+    router.push("/signInPage");
   };
 
-  const handleSellerClick = () => {
-    router.push("/signInSeller");
+  const handleSignUpClick = () => {
+    router.push("/signUpUser");
   };
 
   return (
@@ -29,9 +29,9 @@ const WelcomePage: NextPage = () => {
         <title>Welcome to Walu Maydi3</title>
         <meta
           name="description"
-          content="Choose if you are a customer or seller"
+          content="Choose if you want to login or sign up "
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/iconnav.ico" />
       </Head>
 
       <main
@@ -62,16 +62,16 @@ const WelcomePage: NextPage = () => {
             <div className="flex items-center justify-center gap-8">
               <button
                 className="flex transform items-center justify-center rounded-lg border-2 border-white bg-white px-6 py-3 text-gray-800 shadow-lg transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 hover:border-green-500 hover:text-green-500"
-                onClick={handleCustomerClick}
+                onClick={handleLogInClick}
               >
-                <FaUserAlt className="mr-2 text-xl" /> Customer
+                <FaUserAlt className="mr-2 text-xl" /> Log In 
               </button>
 
               <button
                 className="flex transform items-center justify-center rounded-lg border-2 border-white bg-white px-6 py-3 text-gray-800 shadow-lg transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 hover:border-green-500 hover:text-green-500"
-                onClick={handleSellerClick}
+                onClick={handleSignUpClick}
               >
-                <FaUserAlt className="mr-2 text-xl" /> Seller
+                <FaUserAlt className="mr-2 text-xl" /> Sign Up
               </button>
             </div>
           </div>

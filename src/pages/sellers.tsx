@@ -54,9 +54,9 @@ const SellersPage = () => {
       <Head>
         <title>Walu Maydi3 | Our Sellers</title>
         <meta name="description" content="Discover the best sellers on Walu Maydi3." />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/iconnav.ico" />
       </Head>
-      <NavBarCus />
+      <NavBarCus user_id={""} />
 
       <main className="container mx-auto flex flex-col gap-8 bg-gray-100 p-4">
         <h1 className="text-4xl text-green-500 font-bold mb-2">Our Sellers</h1>

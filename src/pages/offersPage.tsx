@@ -31,11 +31,13 @@ function Card({ Offer }: CardProps) {
           fill
         />
         {isFinished && (
-          <Image
-            className="absolute top-0 right-0 w-12 h-12 animate-bounce"
-            src="/icons/sales.gif"
-            alt="Sold out"
-          />
+         <Image
+         className="absolute top-0 right-0 w-12 h-12 animate-bounce"
+         src="/icons/sales.gif"
+         alt="Sold out"
+         width={200}
+         height={200}
+       />
         )}
       </div>
       <div className="p-6">
@@ -76,9 +78,9 @@ const OffersPage: NextPage = () => {
       <Head>
         <title>Walu Maydi3 | Offers for Sale</title>
         <meta name="description" content="Find the latest offers for sale on Walu Maydi3" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/iconnav.ico" />
       </Head>
-      <NavBarCus />
+      <NavBarCus  />
 
       <main className="container mx-auto flex flex-col gap-12 bg-gray-100 p-4">
       <h1 className="mt- 4 text-2xl font-bold text-green-500">Today's Offers</h1>

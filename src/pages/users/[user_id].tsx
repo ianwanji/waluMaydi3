@@ -55,6 +55,8 @@ const Profileview: NextPage = () => {
                 className="w-32 h-32 rounded-full border-4 border-white mb-4"
                 src={avatar}
                 alt="Profile Picture"
+                width={200}
+         height={200}
               />
               <h1 className="text-3xl font-bold mb-2">{user.username}</h1>
               <p className="text-lg text-gray-600 mb-4">{user.emailaddress}</p>

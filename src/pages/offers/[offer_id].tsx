@@ -52,6 +52,9 @@ const OfferView: NextPage = () => {
               className="rounded-lg shadow-md w-full max-w-md"
               src="/icons/cooking.png"
               alt="Restaurant"
+              width={200}
+         height={200}
+ 
             />
           </div>
           <div className="flex flex-col justify-center">

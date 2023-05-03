@@ -10,8 +10,6 @@ import { api } from '~/utils/api';
 import { NextPage } from "next";
 import Head from "next/head";
 import { useForm } from "react-hook-form";
-import { FaBoxes, FaMoneyBillWave, FaPlusCircle } from 'react-icons/fa';
-
 
 interface CreateSellerForm {
   seller_id: string;
@@ -46,7 +44,7 @@ const SignUpSeller: NextPage = () => {
       location: formData.location,
       category_id: parseInt(formData.category_id),
     }).then(() => {
-      router.push("/");
+      router.push("/createanOffer");
     });
   };
   
@@ -59,7 +57,7 @@ const SignUpSeller: NextPage = () => {
         <link rel="stylesheet" href="/styles.css" />
         <meta name="keywords" content="offer, sell, description" />
       </Head>
-  
+
       <main className="flex min-h-screen items-center justify-center bg-cover bg-center bg-gray-100">
       <div className="w-full max-w-xl bg-white rounded-lg shadow-lg p-12">
           <h1 className="text-4xl text-black font-bold text-center mb-8">

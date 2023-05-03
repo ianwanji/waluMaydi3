@@ -170,8 +170,9 @@ const AboutUs = () => {
             </div>
           </div>
         </div>
+
       </div>
     </div>
   );
 };
-export default AboutUs;
+export default (AboutUs);

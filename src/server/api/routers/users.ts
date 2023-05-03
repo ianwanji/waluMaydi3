@@ -14,6 +14,11 @@ export const newUser = createTRPCRouter({
   listUsers: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.user_acc.findMany();
   }),
+  listUser: publicProcedure.query(({ ctx }) => {
+    return ctx.prisma.user_acc.findMany({
+      distinct: ['user_id'], 
+  })
+}),
 
   getUser: publicProcedure
   .input(z.object({ userid: z.string() }))
