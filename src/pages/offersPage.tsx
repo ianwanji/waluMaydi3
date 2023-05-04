@@ -23,6 +23,7 @@ function Card({ Offer }: CardProps) {
   const isFinished = Offer.numberofboxes === 0;
 
   return (
+    
     <div className="max-w-md mx-auto rounded-md shadow-md overflow-hidden bg-white">
       <div className={`relative h-48 ${Offer.numberofboxes === 0 ? 'bg-gray-400' : 'bg-gradient-to-b from-green-400 to-green-600'}`}>
         <Image

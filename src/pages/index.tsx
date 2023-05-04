@@ -30,6 +30,7 @@ const Homepage: React.FC = () => {
   };
 
   return (
+    
     <div className="container mx-auto px-0">
             <NavBar />
 
