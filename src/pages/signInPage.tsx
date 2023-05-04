@@ -65,11 +65,18 @@ const SignIn: NextPage = () => {
           // Check if password is correct
           if (current.user.password === formData.Password) {
             console.log(`Welcome! User ID: ${current.user.user_id}`);
+           
+           if(current.user.usertype=='S'){
             router.push({
-              pathname: '/sellerOffers',
-              query: { user_id: current.user.user_id }
-            });
-          } else {
+              pathname: '/test',
+              query: { user_id: current.user.user_id }})}
+              else 
+                router.push("/offersPage");
+              }
+              
+      
+            
+          else {
             console.log("Password incorrect.");
           }
           break;

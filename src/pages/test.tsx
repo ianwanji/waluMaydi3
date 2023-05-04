@@ -26,8 +26,7 @@ const OffersPage: NextPage = () => {
   const { data: offersList } = api.offers.listOffers.useQuery();
 
   if (!offersList || offersList.length === 0) {
-    return <div>No offers found for this seller.</div>
-    router.push("/createanOffer");
+    return <div>No offers found for this seller.</div>;
   }
 
   // Create the linked list from the offers list
@@ -63,8 +62,8 @@ const OffersPage: NextPage = () => {
   }
 
   if (matchedOffers.length === 0) {
-    return <div>No offers found for this seller.</div>;
-  }
+    router.push("/createanOffer");
+    return null ; }
   console.log(matchedOffers);
  return (
   <div className="container mx-auto px-0">

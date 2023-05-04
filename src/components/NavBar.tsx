@@ -74,13 +74,17 @@ export function NavBar() {
             id="navbar-default"
           >
             <ul className="mt-4 flex flex-col md:flex-row space-x-4 font-medium text-white text-0xl md:space-x-8 md:text-lg">
+            <li>
+                <Link href="/" aria-current="page" onClick={toggleMenu}>
+Home                </Link> 
+          </li>
               <li>
                 <Link href="/about" aria-current="page" onClick={toggleMenu}>
                   About Us
                 </Link> 
           </li>
           <li>
-            <Link href="/services" onClick={toggleMenu}>
+            <Link href="/service" onClick={toggleMenu}>
               Services
             </Link>
           </li>

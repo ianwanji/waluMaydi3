@@ -44,7 +44,11 @@ const CreateAnOffer: NextPage = () => {
     }).then(() => {
       setShowNotification(true);
       setTimeout(() => setShowNotification(false), 5000);
-      router.push("/");
+      router.push({
+        pathname: '/test',
+        query: { user_id: formData.seller_id }
+      });
+
     });
   };
 
