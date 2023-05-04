@@ -3,6 +3,9 @@
 /* eslint-disable */
 
 
+/* eslint-disable */
+
+
 
 import React, { useState, ChangeEvent } from 'react';
 import { useRouter } from 'next/router';
@@ -10,6 +13,7 @@ import { api } from '~/utils/api';
 import { NextPage } from "next";
 import Head from "next/head";
 import { useForm } from "react-hook-form";
+import { NavBar } from '~/components/NavBar';
 
 interface CreateSellerForm {
   seller_id: string;
@@ -57,6 +61,8 @@ const SignUpSeller: NextPage = () => {
         <link rel="stylesheet" href="/styles.css" />
         <meta name="keywords" content="offer, sell, description" />
       </Head>
+      <div>
+        <NavBar/>
 
       <main className="flex min-h-screen items-center justify-center bg-cover bg-center bg-gray-100">
       <div className="w-full max-w-xl bg-white rounded-lg shadow-lg p-12">
@@ -111,7 +117,7 @@ const SignUpSeller: NextPage = () => {
             <div className="flex flex-col gap-2 w-full">
               <label htmlFor="location" className="text-lg font-medium text-black">
                
-                Address
+                Location
               </label>
               <input
                 id="location"
@@ -119,7 +125,7 @@ const SignUpSeller: NextPage = () => {
                 className="block w-full rounded-lg border border-black-200 bg-white p-2.5 text-sm text-gray-900 focus:border-green-500 focus:ring-green-500"
                 style={{ fontFamily: 'Times New Roman' }}
                 {...register("location", { required: true })}
-                value="I"
+                value="Ifrane"
                 readOnly
               />
             </div>
@@ -151,12 +157,16 @@ const SignUpSeller: NextPage = () => {
     </form>
   </div>
 </main>
+</div>
 </>
 );};
   
 
 export default SignUpSeller;
 
+/* function register(arg0: string, arg1: { required: boolean; }): JSX.IntrinsicAttributes & React.ClassAttributes<HTMLInputElement> & React.InputHTMLAttributes<HTMLInputElement> {
+  throw new Error("Function not implemented.");
+} */
 /* function register(arg0: string, arg1: { required: boolean; }): JSX.IntrinsicAttributes & React.ClassAttributes<HTMLInputElement> & React.InputHTMLAttributes<HTMLInputElement> {
   throw new Error("Function not implemented.");
 } */

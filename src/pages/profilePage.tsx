@@ -20,7 +20,7 @@ type CardProps = {
 function Card({ user }: CardProps) {
   return (
     <Link
-      href={`/${user.user_id}`}
+      href={`/users/${user.user_id}`}
       className="flex flex-col items-center rounded-lg bg-white shadow-md px-4 py-6 text-center text-sm font-medium text-gray-800 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-green-300 transition duration-300 ease-in-out"
     >
       <div className="relative w-24 h-24 rounded-full overflow-hidden">
@@ -52,7 +52,6 @@ const ListOfUsersPage: NextPage = () => {
         <meta
           name="description"
         />
-        <link rel="icon" href="/iconnav.ico" />
       </Head>
       <main className="container mx-auto my-8 px-4">
         <h1 className="text-3xl font-bold text-gray-800 mb-8">List of Users</h1>

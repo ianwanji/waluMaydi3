@@ -5,13 +5,26 @@
 /* eslint-disable */
 
 
+/* eslint-disable */
+
+
+/* eslint-disable */
+
+
 import { UserButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import router from "next/router";
 
 export function NavBarSeller(){
   const [isNavbarCusOpen, setIsNavbarSellerOpen] = useState(false);
+  const handleLogout = () => {
+    // clear the user session here
+    router.push('/'); // redirect to the sign-in page
+  }
+
+
 
   const toggleNavbarSeller = () => {
     setIsNavbarSellerOpen(!isNavbarCusOpen);
@@ -60,27 +73,9 @@ export function NavBarSeller(){
             className={`${isNavbarCusOpen ? "block" : "hidden"} w-full md:block md:w-auto`}
             id="navbar-default"
           >
-            <ul className="mt-4 flex flex-row space-x-4 font-medium text-white text-0xl">
-              <li>
-                <Link
-                  href="/profilePage"
-                  
-                  aria-current="page" 
-                  className="hover:text-gray-300"
-                >
-                  Profile
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/offersPage"
-                 
-                  aria-current="page"
-                  className="hover:text-gray-300"
-                >
-                  My offers
-                </Link>
-              </li>
+            <ul className="mt-4 flex flex-col md:flex-row space-x-4 font-medium text-white text-1xl md:space-x-8 md:text-lg">
+              
+             
               
               <Link
                   href="/createanOffer"
@@ -91,10 +86,13 @@ export function NavBarSeller(){
                   Create an offer
                 </Link>
                 
-              
-              <li>
-                <UserButton />
+                <li>
+                <button onClick={handleLogout} className="hover:text-gray-300">
+                  Logout
+                </button>
               </li>
+
+
             </ul>
           </div>
         </nav>

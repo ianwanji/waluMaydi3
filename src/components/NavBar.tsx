@@ -23,11 +23,9 @@ export function NavBar() {
               <Image src="/iconnav.ico" alt="Icon" width={80} height={80} />
             </div>
 
-            <Link href="/" className="flex items-center">
               <span className="whitespace-nowrap text-2xl font-bold dark:text-white ml-0 mt-8 font-newromatimes">
                 Walu Maydi3
               </span>
-            </Link>
           </div>
 
           <button

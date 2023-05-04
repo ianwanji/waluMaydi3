@@ -4,6 +4,9 @@
 /* eslint-disable */
 
 
+/* eslint-disable */
+
+
 
 
 
@@ -14,6 +17,7 @@ import { NextPage } from "next";
 import Head from "next/head";
 import { useForm } from "react-hook-form";
 import { FaBoxes, FaMoneyBillWave, FaUser } from 'react-icons/fa';
+import { NavBar } from '~/components/NavBar';
 
 interface Props {
   user_id: string;
@@ -48,6 +52,7 @@ const SignUpCus: NextPage = () => {
   
   return (
     <>
+    
       <Head>
         <title>Sign Up Customer</title>
         <meta name="description" content="Walu Maydi3" />
@@ -55,9 +60,11 @@ const SignUpCus: NextPage = () => {
         <link rel="stylesheet" href="/styles.css" />
         <meta name="keywords" content="offer, sell, description" />
       </Head>
+      <div>
+        <NavBar/>
 
       <main className="flex min-h-screen items-center justify-center bg-cover bg-center bg-gray-100">
-        <div className="w-full max-w-xl bg-white rounded-lg shadow-lg p-16">
+        <div className="w-full max-w-xl bg-white rounded-lg shadow-lg p-12">
           <h1 className="text-4xl text-black font-bold text-center mb-8">
             Sign Up 
           </h1>
@@ -157,6 +164,7 @@ const SignUpCus: NextPage = () => {
 </form>
 </div>
 </main>
+</div>
 </>
 );
 };

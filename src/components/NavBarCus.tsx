@@ -1,44 +1,44 @@
 /* eslint-disable */
-
-
+/* eslint-disable */
+/* eslint-disable */
 
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
 import { user_acc } from "@prisma/client";
-import { useRouter } from "next/router";
+import router, { useRouter } from "next/router";
 import { useState } from "react";
 
-
-
-
-export function NavBarCus({ user_id }: { user_id: string }): JSX.Element {
+export function NavBarCus() {
   const [isNavbarCusOpen, setIsNavbarCusOpen] = useState(false);
+  const handleLogout = () => {
+    // clear the user session here
+    router.push("/"); // redirect to the sign-in page
+  };
 
   const toggleNavbarCus = () => {
     setIsNavbarCusOpen(!isNavbarCusOpen);
   };
   return (
     <div className="container mx-auto px-0">
-      <header className="bg-green-500 text-white py-0">
-        <nav className="flex justify-between items-center">
+      <header className="bg-green-500 py-0 text-white">
+        <nav className="flex items-center justify-between">
           <div className="flex items-center">
-            <div className="icon mr-0 ml-0"> {/* Adjusted margin */}
+            <div className="icon ml-6 mr-0">
               <Image src="/iconnav.ico" alt="Icon" width={80} height={80} />
             </div>
-
             <Link href="/" className="flex items-center">
-              <span className="whitespace-nowrap text-2xl font-bold dark:text-white ml-0 mt-8 font-newromatimes">
+              <span className="font-newromatimes ml-0 mt-8 whitespace-nowrap text-2xl font-bold dark:text-white">
                 Walu Maydi3
               </span>
             </Link>
           </div>
-
           <button
             type="button"
             className="ml-3 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 md:hidden"
             aria-controls="navbar-default"
             aria-expanded={isNavbarCusOpen ? "true" : "false"}
+            aria-label="Toggle navigation menu"
             onClick={toggleNavbarCus}
           >
             <span className="sr-only">Toggle navigation</span>
@@ -56,30 +56,36 @@ export function NavBarCus({ user_id }: { user_id: string }): JSX.Element {
               ></path>
             </svg>
           </button>
-
-
           <div
-            className={`${isNavbarCusOpen ? "block" : "hidden"} w-full md:block md:w-auto`}
+            className={`${
+              isNavbarCusOpen ? "block" : "hidden"
+            } w-full transition-all duration-300 md:block md:w-auto`}
             id="navbar-default"
           >
-            <ul className="mt-4 flex flex-row space-x-4 font-medium text-white text-0xl">
+            <ul className="mt-4 flex flex-col space-x-4 text-lg font-medium text-white md:flex-row">
               <li>
-                <Link href="/profilePage" aria-current="page" className="hover:text-gray-300">
-                  Profile
-                </Link>
-              </li>
-              <li>
-                <Link href="/offersPage" aria-current="page" className="hover:text-gray-300">
+                <Link
+                  href="/offersPage"
+                  aria-current="page"
+                  className="hover:text-gray-300"
+                >
                   Offers
                 </Link>
               </li>
               <li>
-                <Link href="/sellers" aria-current="page" className="hover:text-gray-300">
-                  Our Sellers
+                <Link
+                  href="/sellers"
+                  aria-current="page"
+                  className="hover:text-gray-300"
+                >
+                  Seller
                 </Link>
               </li>
-
-              
+              <li>
+                <button onClick={handleLogout} className="hover:text-gray-300">
+                  Logout
+                </button>
+              </li>
             </ul>
           </div>
         </nav>

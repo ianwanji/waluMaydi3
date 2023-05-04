@@ -2,6 +2,9 @@
 /* eslint-disable */
 
 
+/* eslint-disable */
+
+
 
 
 
@@ -25,7 +28,7 @@ const SellerCard: React.FC<CardProps> = ({ seller }) => {
 
   return (
     <div className="bg-white shadow-md rounded-md p-6">
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-bold text-gray-800">{seller.seller_name}</h2>
         <button
           className="px-3 py-2 text-sm rounded-md bg-green-500 text-white hover:bg-green-600 focus:outline-none"
@@ -36,11 +39,10 @@ const SellerCard: React.FC<CardProps> = ({ seller }) => {
         </button>
       </div>
       {showDetails && (
-        <div className="mb-4">
-          <p className="text-gray-600 text-sm">{seller.seller_description}</p>
-          <p className="text-gray-600 text-sm">{seller.location}</p>
-          <p className="text-gray-600 text-sm">{seller.usertype}</p>
-        </div>
+        <div className="mb-10 ml-6">
+        <p className="text-gray-600 text-l mb-2"><strong>Description:  </strong> {seller.seller_description}</p>
+        <p className="text-gray-600 text-l"><strong>Address:  </strong> {seller.location}</p>
+      </div>
       )}
     </div>
   );
@@ -56,11 +58,11 @@ const SellersPage = () => {
         <meta name="description" content="Discover the best sellers on Walu Maydi3." />
         <link rel="icon" href="/iconnav.ico" />
       </Head>
-      <NavBarCus user_id={""} />
+      <NavBarCus />
 
-      <main className="container mx-auto flex flex-col gap-8 bg-gray-100 p-4">
+      <main className="container mx-auto flex flex-col gap-8 bg-gray-100 p-10">
         <h1 className="text-4xl text-green-500 font-bold mb-2">Our Sellers</h1>
-        <p className="text-gray-600 text-sm mb-6">Discover the best sellers on Walu Maydi3.</p>
+        <p className="text=0xl text-gray-600 text-sm mb-6">Discover the best sellers on Walu Maydi3.</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {sellersList.isSuccess &&
             sellersList.data.map((seller) => (

@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 import { api } from "../utils/api";
 import { FaPlusCircle, FaMoneyBillWave, FaBoxes } from "react-icons/fa";
 import { useState, useEffect } from "react";
+import { NavBarSeller } from "~/components/NavBarSeller";
 
 const CreateAnOffer: NextPage = () => {
   type CreateOfferForm = {
@@ -56,11 +57,16 @@ const CreateAnOffer: NextPage = () => {
         <link rel="stylesheet" href="/styles.css" />
         <meta name="keywords" content="offer, sell, description" />
       </Head>
+      <NavBarSeller/>
+
 
       <div className="bg-gray-100 py-8">
         <div className="container mx-auto px-4 rounded-lg">
+        
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-semibold text-yellow-500 uppercase">
+          
+            <h2 className="text-3xl font-bold text-yellow-500 uppercase">
+             
               Create an Offer
             </h2>
           </div>
@@ -174,5 +180,3 @@ const CreateAnOffer: NextPage = () => {
 </>
 );
 };export default CreateAnOffer;
-
-
