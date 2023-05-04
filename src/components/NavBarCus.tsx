@@ -74,7 +74,7 @@ export function NavBarCus() {
               </li>
               <li>
                 <Link
-                  href="/Sellers"
+                  href="/listofSellers"
                   aria-current="page"
                   className="hover:text-gray-300"
                 >
