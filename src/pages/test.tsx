@@ -51,6 +51,7 @@ const OffersPage: NextPage = () => {
   let current = head;
   while (current) {
     if (current.offer.seller_id === parseInt(user_id as string)) {
+      console.log(user_id)
       matchedOffers.push({
         offer_id: current.offer.offer_id,
         price: current.offer.price as Decimal,
