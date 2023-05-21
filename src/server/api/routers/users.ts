@@ -114,13 +114,6 @@ export const newUser = createTRPCRouter({
             },
           });
     
-
-          
-      
-  
-       
-      
-      
       return users;
     }),
 

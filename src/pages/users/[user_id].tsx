@@ -53,7 +53,8 @@ const Profileview: NextPage = () => {
     : '/icons/open-sign.png';
     return (
         <>
-              {user.usertype === "C" ? <NavBarCus /> : <NavBarSeller />}
+              {user.usertype === "C" ? <NavBarCus /> :       <NavBarSeller/>
+}
           <div className="bg-gray-100 min-h-102">
             <div className="container mx-auto px-1 py-8 flex flex-col items-center">
               <Image

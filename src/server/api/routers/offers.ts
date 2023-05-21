@@ -46,6 +46,22 @@ export const newOffer = createTRPCRouter({
           });
       return offers;
     }),
+    deleteOffer: publicProcedure
+    .input(z.object({ offerId: z.number() }))
+    .mutation(async ({ input, ctx }) => {
+      const offer = await ctx.prisma.offer.findUnique({
+        where: { offer_id: input.offerId },
+      });
+
+      if (!offer) {
+        throw new Error(`Offer with id ${input.offerId} not found.`);
+      }
+
+      await ctx.prisma.offer.delete({
+        where: { offer_id: input.offerId },
+      });
+      return offer;
+    }),
 
     updateOffer: publicProcedure
         .input(
@@ -72,6 +88,7 @@ export const newOffer = createTRPCRouter({
             where: { offer_id: offer.offer_id },
             data: { numberofboxes: newBoxesAvailable },
           });
+          
     
           return offer;
         }),

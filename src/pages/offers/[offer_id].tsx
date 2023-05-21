@@ -1,3 +1,8 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable react/no-unescaped-entities */
+
+
 
 /* eslint-disable @typescript-eslint/consistent-type-imports */
 /* eslint-disable @typescript-eslint/no-floating-promises */

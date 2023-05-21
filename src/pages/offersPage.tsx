@@ -3,16 +3,15 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable react/no-unescaped-entities */
 
-
 import { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { api } from "~/utils/api";
 import { offer } from "@prisma/client";
-import head from "./signInPage";
-
-import { FaArrowCircleRight } from 'react-icons/fa';
+import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { FaArrowCircleRight } from "react-icons/fa";
 import { NavBarCus } from "~/components/NavBarCus";
 
 type CardProps = {
@@ -22,10 +21,33 @@ type CardProps = {
 function Card({ Offer }: CardProps) {
   const isFinished = Offer.numberofboxes === 0;
 
+  useEffect(() => {
+    if (isFinished) {
+      const cardElement = document.getElementById(`card-${Offer.offer_id}`);
+      if (cardElement) {
+        cardElement.classList.add("shake");
+      }
+    }
+  }, [isFinished, Offer.offer_id]);
+
   return (
-    
-    <div className="max-w-md mx-auto rounded-md shadow-md overflow-hidden bg-white">
-      <div className={`relative h-48 ${Offer.numberofboxes === 0 ? 'bg-gray-400' : 'bg-gradient-to-b from-green-400 to-green-600'}`}>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
+      whileHover={{ scale: 1.05 }}
+      className={`max-w-md mx-auto rounded-md shadow-md overflow-hidden bg-white ${
+        isFinished ? "finished" : ""
+      }`}
+    >
+      <div
+        id={`card-${Offer.offer_id}`}
+        className={`relative h-48 ${
+          Offer.numberofboxes === 0
+            ? "bg-gray-400"
+            : "bg-gradient-to-b from-green-400 to-green-600"
+        }`}
+      >
         <Image
           className="object-cover object-center h-full w-full transform transition-all duration-500 hover:scale-110"
           src="/icons/restaurant.png"
@@ -33,18 +55,19 @@ function Card({ Offer }: CardProps) {
           fill
         />
         {isFinished && (
-         <Image
-         className="absolute top-0 right-0 w-12 h-12 animate-bounce"
-         src="/icons/sales.gif"
-         alt="Sold out"
-         width={200}
-         height={200}
-/>
+          <div className="absolute top-0 right-0 w-12 h-12 animate-bounce">
+            <Image
+              src="/icons/sales.gif"
+              alt="Sold out"
+              width={200}
+              height={200}
+            />
+          </div>
         )}
       </div>
       <div className="p-6">
         <div className="flex items-baseline">
-          <span className="bg-green-200 text-green-800 text-xs px-2 inline-block rounded-full  uppercase font-semibold tracking-wide">
+          <span className="bg-green-200 text-green-800 text-xs px-2 inline-block rounded-full uppercase font-semibold tracking-wide">
             {Offer.seller_id}
           </span>
           <p className="ml-2 text-gray-600 uppercase text-xs font-semibold tracking-wide">
@@ -54,7 +77,9 @@ function Card({ Offer }: CardProps) {
         {isFinished ? (
           <p className="mb-3 text-red-500 text-sm font-medium">Sold Out</p>
         ) : (
-          <p className="mb-3 text-gray-500 text-sm font-medium">{Offer.numberofboxes} boxes available</p>
+          <p className="mb-3 text-gray-500 text-sm font-medium">
+            {Offer.numberofboxes} boxes available
+          </p>
         )}
         {!isFinished && (
           <Link
@@ -68,40 +93,45 @@ function Card({ Offer }: CardProps) {
           </Link>
         )}
       </div>
-    </div>
-  )
+    </motion.div>
+  );
 }
-  
+
 const OffersPage: NextPage = () => {
   const offersList = api.offers.listOffers.useQuery();
-  
+
   return (
     <>
       <Head>
         <title>Walu Maydi3 | Offers for Sale</title>
-        <meta name="description" content="Find the latest offers for sale on Walu Maydi3" />
+        <meta
+          name="description"
+          content="Find the latest offers for sale on Walu Maydi3"
+        />
         <link rel="icon" href="/iconnav.ico" />
       </Head>
-      <NavBarCus  />
+      <NavBarCus />
 
       <main className="container mx-auto flex flex-col gap-12 bg-gray-100 p-4">
-      <h1 className="mt- 4 text-2xl font-bold text-green-500">Today's Offers</h1>
-        <p className="mt-1 text-gray-600">Limited quantity! Get them before they're gone.</p>
+        <h1 className="mt-4 text-2xl font-bold text-green-500">Today's Offers</h1>
+        <p className="mt-1 text-gray-600">
+          Limited quantity! Get them before they're gone.
+        </p>
 
-    {offersList.isLoading && <p>Loading...</p>}
+        {offersList.isLoading && <p>Loading...</p>}
 
-    {offersList.data && (
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {offersList.data.map((offer) => (
-          <Card key={offer.offer_id} Offer={offer} />
-        ))}
-      </div>
-    )}
+        {offersList.data && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {offersList.data.map((offer) => (
+              <Card key={offer.offer_id} Offer={offer} />
+            ))}
+          </div>
+        )}
 
-    {offersList.isError && <p>Error loading offers...</p>}
-  </main>
-</>
-);
+        {offersList.isError && <p>Error loading offers...</p>}
+      </main>
+    </>
+  );
 };
 
 export default OffersPage;

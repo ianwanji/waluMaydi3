@@ -42,4 +42,3 @@ export const newSeller = createTRPCRouter({
       return sellers;
     }),
 });
-
